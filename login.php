@@ -1,3 +1,44 @@
+<?php 
+include 'koneksi.php';
+
+session_start();    
+
+if(isset($_POST['login'])){
+
+var_dump ($_POST);
+$username = htmlspecialchars($_POST['username']);
+$password = htmlspecialchars($_POST['password']);
+$admin = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
+
+if($data = mysqli_fetch_assoc($admin)){
+if(password_verify($password, $data['password'])){
+$_SESSION['username'] = $data['username'];
+
+if($data['role'] == 'admin'){
+$_SESSION['id'] = $data['id'];
+$_SESSION['role'] = $data['role'];
+header('location: admin/index.php');
+}
+elseif($data['role'] == 'petugas'){
+$_SESSION['id'] = $data['id'];
+$_SESSION['role'] = $data['role'];
+//echo"Masuk ke petugas";
+}
+elseif($data['role'] == 'peminjam'){
+$_SESSION['role'] = $data['role'];
+header('location: admin/peminjam.php');
+//echo"Masuk ke peminjam"; 
+}
+//header('location: admin/index.php');
+} else {
+echo "username dan password salah";
+}
+} else {
+echo "akun tidak ada";
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +65,9 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg"></p>
 
-      <form action="../../index3.html" method="post">
+      <form action="login.php" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="text" class="form-control" name="username" placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +75,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -43,24 +84,19 @@
         </div>
         <div class="row">
           <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
+          <p class="mb-0">
+        <a href="register.php" class="text-center">Register</a>
+        </p>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" name="login" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <p class="mb-0">
-        <a href="register.php" class="text-center">Register</a>
-      </p>
+      
     </div>
     <!-- /.login-card-body -->
   </div>

@@ -1,11 +1,8 @@
 <?php
 include '../koneksi.php';
 
-$sql1 = "SELECT * FROM buku";
-$result1 = mysqli_query($koneksi, $sql1);
-
-$sql2 = "SELECT * FROM user";
-$result2 = mysqli_query($koneksi, $sql2);
+$sql="SELECT * FROM perpustakaan";
+$result = mysqli_query($koneksi, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +59,7 @@ $result2 = mysqli_query($koneksi, $sql2);
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x:hidden;">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -182,13 +179,8 @@ $result2 = mysqli_query($koneksi, $sql2);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -196,56 +188,71 @@ $result2 = mysqli_query($koneksi, $sql2);
     <!-- /.content-header -->
 
     <!-- Main content -->
+    <div class="content-wrapper" style="margin-top:-1px;">
+    <section class="content-header">
+    </section>
+
     <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result1);?></h3>
+      <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="overflow-x:hidden; width:50%;margin-left:10%;padding:10px;background:#fff;border-radius:7px;">
+       <div class="container-fluid">
+        <h2 style="color:#161A30; text-align:center;">Registrasi</h2>        
+         <form action="../proses/proses_register_pengguna.php" method="post">
+         <?php  
+            if ($result) {
+                echo "<label for='perpustakaan'></label>";
+                echo "<select class='form-control mb-2' name='perpustakaan' required>";
 
-                <p>Total Buku</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-book"></i>
-              </div>
-              <a href="buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result2);?><sup style="font-size: 20px"></sup></h3>
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $nama_perpustakaan = $row['nama_perpus'];
+                    $id_perpus = $row['id'];
+                    echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+                    }
 
-                <p>Pengguna</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-users"></i>
-              </div>
-              <a href="pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    echo "</select>";
+                } else {
+                    echo "Gagal mengambil data";
+                }
+        ?>
+         <div class="form-group">
+                <label for="username">Username :</label>
+            <input class="form-control" id="username" name="username"">
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3></h3>
-
-                <p>Peminjaman</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="peminjam.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="form-group">
+                <label for="password">Password :</label>
+                <input type="password" class="form-control" id="password" name="password" value="">
             </div>
-          </div>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" class="form-control" name="email" ">
+            </div>
+            <div class="form-group">
+                <label for="nama_lengkap">Nama Lengkap :</label>
+                <input type="text" class="form-control" name="nama_lengkap"">
+            </div>
+            <div class="form-group">
+          <label for="role">Role :</label>
+          <select class="form-control" name="role" required>
+            <option value=""></option>
+            <option value="admin">Admin</option>
+            <option value="petugas">Petugas</option>
+            <option value="peminjam">Peminjam</option>
+          </select>
         </div>
+            <div class="form-group">
+                <label for="alamat">Alamat :</label>
+                <textarea name="alamat" cols="30" rows="4" class="form-control"></textarea>
+            </div>
+            
+                <div class="footer text-center">
+                <a href="pengguna.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                <button type="submit" class="btn btn-primary">Registrasi</button>
+            </div>
+         </form>
+       </div>
+        </div>
+    </section>
   </div>
+</div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

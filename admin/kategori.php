@@ -1,11 +1,15 @@
-<?php
+<?php 
 include '../koneksi.php';
 
-$sql1 = "SELECT * FROM buku";
-$result1 = mysqli_query($koneksi, $sql1);
+session_start();
 
-$sql2 = "SELECT * FROM user";
-$result2 = mysqli_query($koneksi, $sql2);
+if(!$_SESSION["id"]){
+  header("Location:../login.php");
+}
+
+$sql = "SELECT * FROM kategori_buku";
+$result = mysqli_query($koneksi, $sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +66,7 @@ $result2 = mysqli_query($koneksi, $sql2);
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x: hidden;">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -182,70 +186,59 @@ $result2 = mysqli_query($koneksi, $sql2);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
+            <h1 class="m-0"></h1>
+          </div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <div class="content-wrapper" style="background-color: #EEEEEE; color:#161A30; margin-left: 6px; margin-top: -50px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header"><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+   <section class="content">
+    <div class="content-wrape shadow p-3 mb-5 bg-body-tertiary" style="width:100%;padding:10px;background:#fff;border-radius:7px;">
       <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result1);?></h3>
-
-                <p>Total Buku</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-book"></i>
-              </div>
-              <a href="buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result2);?><sup style="font-size: 20px"></sup></h3>
-
-                <p>Pengguna</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-users"></i>
-              </div>
-              <a href="pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3></h3>
-
-                <p>Peminjaman</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="peminjam.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h2 style="color:#161A30;">Kategori</h2>
+            <a href="input/input_kategori.php">
+              <button type="button" class="btn btn-primary" style="margin-left:160%;margin-top:-45px;position:absolute;width:168px;">+ Tambah Kategori</button>
+            </a>
           </div>
         </div>
+      </div>
+    <div class="container-fluid" style="width: 90%;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Kategori</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i=0; while ($row = mysqli_fetch_assoc($result)) :  $i++; ?>
+                <tr>
+                    <td><?= $i ?></td>
+                    <td><?= $row['nama_kategori'] ?></td>
+                    <td>
+                        <a href="edit/edit_kategori.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                        <a href="delete/delete_kategori.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
   </div>
+    </div>
+   </section>
+  </div>
+</div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

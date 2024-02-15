@@ -1,11 +1,9 @@
 <?php
-include '../koneksi.php';
+include '../../koneksi.php';
+$id = $_GET['id'];
+$sql = "SELECT * FROM user WHERE id='$id'";
+$result = mysqli_query($koneksi, $sql);
 
-$sql1 = "SELECT * FROM buku";
-$result1 = mysqli_query($koneksi, $sql1);
-
-$sql2 = "SELECT * FROM user";
-$result2 = mysqli_query($koneksi, $sql2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,26 +41,26 @@ $result2 = mysqli_query($koneksi, $sql2);
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../dashboard/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../dashboard/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="../dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../../dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../../dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="../dashboard/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="../../dashboard/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../dashboard/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../dashboard/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="../dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="../../dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="../dashboard/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../../dashboard/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="../../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x:hidden;">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -71,7 +69,7 @@ $result2 = mysqli_query($koneksi, $sql2);
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        <a class="nav-link" href="../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a class="nav-link" href="../../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
       </li>
     </ul>
   </nav>
@@ -100,7 +98,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.php" class="nav-link">
+                <a href="../index.php" class="nav-link">
                 <li class="nav-item menu-open">
                 <i class=" nav-icon fa-solid fa-house"></i>                  
                 <p>Dashboard</p>
@@ -111,7 +109,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./pengguna.php" class="nav-link">
+                <a href="../pengguna.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-users"></i>
                   <p>Pengguna</p>
                 </a>
@@ -121,7 +119,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./peminjam.php" class="nav-link">
+                <a href="../peminjam.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-pen-to-square"></i>
                   <p>Peminjaman</p>
                 </a>
@@ -131,7 +129,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./buku.php" class="nav-link">
+                <a href="../buku.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book"></i>
                   <p>Buku</p>
                 </a>
@@ -141,7 +139,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./ulasan.php" class="nav-link">
+                <a href="../ulasan.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-comments"></i>
                   <p>Ulasan Buku</p>
                 </a>
@@ -151,7 +149,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
+                <a href="../laporan.php" class="nav-link">
                 <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
                   <p>Generate Laporan</p>
                 </a>
@@ -175,75 +173,72 @@ $result2 = mysqli_query($koneksi, $sql2);
     <!-- /.sidebar -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+  <div class="content-wrapper" style="margin-top:-1px;">
+    <?php $data=mysqli_fetch_assoc($result); ?>
 
-    <!-- Main content -->
+    <section class="content-header">
+    </section>
+
     <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result1);?></h3>
-
-                <p>Total Buku</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-book"></i>
-              </div>
-              <a href="buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="overflow-x:hidden; width:50%;margin-left:25%;padding:10px;background:#fff;border-radius:7px;">
+       <div class="container-fluid">
+        <h2 style="color:#161A30; text-align:center;">Pengguna</h2>        
+         <form action="../../proses/proses_edit_pengguna.php?id=<?= $data['id'] ?>" method="post">
+            <div class="form-group">
+                <label for="nama_lengkap">Nama Lengkap :</label>
+                <input type="text" class="form-control" name="nama_lengkap" value="<?= $data['nama_lengkap'] ?>">
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result2);?><sup style="font-size: 20px"></sup></h3>
-
-                <p>Pengguna</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-users"></i>
-              </div>
-              <a href="pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="form-group">
+                <label for="username">Username :</label>
+            <input class="form-control" id="username" name="username" value="<?= $data['username'] ?>">
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3></h3>
-
-                <p>Peminjaman</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="peminjam.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="form-group">
+                <label for="password">Password :</label>
+                <input type="password" class="form-control" id="password" name="password" value="">
             </div>
-          </div>
+            <div class="form-group">
+          <label for="role">Role :</label>
+          <select class="form-control" name="role"  required>
+            <?php
+            if($data['role'] ==='admin'){?>
+            <option value="admin">Admin</option>
+            <option value="petugas">Petugas</option>
+            <option value="peminjam">Peminjam</option>
+            <?php }?>
+
+            <?php
+            if($data['role'] ==='petugas'){?>
+            <option value="petugas">Petugas</option>
+            <option value="admin">Admin</option>
+            <option value="peminjam">Peminjam</option>
+            <?php }?>
+
+            <?php
+            if($data['role'] ==='peminjam'){?>
+            <option value="peminjam">Peminjam</option>
+            <option value="admin">Admin</option>
+            <option value="petugas">Petugas</option>
+            <?php }?>
+          </select>
+        </div>
+            <div class="form-group">
+                <label for="alamat">Alamat :</label>
+                <textarea name="alamat" cols="30" rows="4" class="form-control"><?= $data['alamat'] ?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" class="form-control" name="email" value="<?= $data['email']?>">
+            </div>
+                <div class="footer text-center">
+                <a href="../pengguna.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+         </form>
+       </div>
+        </div>
+    </section>
+  </div>
+</div>
         </div>
   </div>
 
@@ -256,38 +251,38 @@ $result2 = mysqli_query($koneksi, $sql2);
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../dashboard/plugins/jquery/jquery.min.js"></script>
+<script src="../../dashboard/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="../dashboard/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="../../dashboard/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-<script src="../dashboard/plugins/chart.js/Chart.min.js"></script>
+<script src="../../dashboard/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="../dashboard/plugins/sparklines/sparkline.js"></script>
+<script src="../../dashboard/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="../dashboard/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="../dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="../../dashboard/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="../../dashboard/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
-<script src="../dashboard/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="../../dashboard/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="../dashboard/plugins/moment/moment.min.js"></script>
-<script src="../dashboard/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="../../dashboard/plugins/moment/moment.min.js"></script>
+<script src="../../dashboard/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="../dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="../../dashboard/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
-<script src="../dashboard/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="../../dashboard/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="../dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="../../dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../dashboard/dist/js/adminlte.js"></script>
+<script src="../../dashboard/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dashboard/dist/js/demo.js"></script>
+<script src="../../dashboard/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../dashboard/dist/js/pages/dashboard.js"></script>
+<script src="../../dashboard/dist/js/pages/dashboard.js"></script>
 </body>
 </html>

@@ -1,3 +1,9 @@
+<?php
+include 'koneksi.php';
+
+$sql="SELECT * FROM perpustakaan";
+$result = mysqli_query($koneksi, $sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,47 +20,38 @@
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
-  <div class="register-logo">
-    <a href="dashboard/index.php"><b>Registrasi</b></a>
-  </div>
 
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg"></p>
+     <div class="scrollable-form">
+    <form action="proses/proses_register.php" method="post">
+      <h1 style="text-align:center; ">Registrasi</h1>
+        <?php
+            if ($result) {
+                echo "<label for='perpustakaan'></label>";
+                echo "<select class='form-control mb-2' name='perpustakaan' required>";
 
-      <form action="../../index.html" method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $nama_perpustakaan = $row['nama_perpus'];
+                    $id_perpus = $row['id'];
+                    echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+                    }
+
+                    echo "</select>";
+                } else {
+                    echo "Gagal mengambil data";
+                }
+        ?>
+        <input class="form-grup mb-2" type="text" name="username" placeholder="Username" required>
+        <input class="form-grup mb-2" type="password" name="password" placeholder="Password" required>
+        <input class="form-grup mb-2" type="email" name="email" placeholder="Email" required>
+        <input class="form-grup mb-2" type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
+        <textarea class="form-grup mb-2" type="textarea" name="alamat" placeholder="Alamat" required></textarea>
+        <input class="form-grup mb-2" type="text" name="role" value="peminjam" style="display: none;">
+        <button class="form-grup mb-2 btn btn-primary " type="submit" name="daftar">Daftar   </button>
+    </form>
+    </div>
 
       <a href="login.php" class="text-center">I already have a membership</a>
     </div>
