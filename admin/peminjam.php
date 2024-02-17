@@ -191,7 +191,6 @@ $result2 = mysqli_query($koneksi, $sql2);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Peminjam</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
           </div><!-- /.col -->
@@ -258,12 +257,13 @@ $result2 = mysqli_query($koneksi, $sql2);
         ?>
         <div class="form-grup">
             <label for="tanggal_peminjaman">Tanggal peminjaman :</label>
-            <input type="date" name="tanggal_peminjaman" class="form-control">
+            <input type="date" name="tanggal_peminjaman" class="form-control" required>
         </div>
         <div class="form-grup">
             <label for="status">Status :</label>
             <select name="status" class="form-control">
                 <option value="Dipinjam">Dipinjam</option>
+                <option value="Dikembalikan">Dikembalikan</option>
             </select>
         </div>
         <div class="form-grup" style="margin-left: 40%;">

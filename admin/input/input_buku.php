@@ -171,6 +171,16 @@ $result3 = mysqli_query($koneksi, $sql3);
               </li>
             </ul>
           </li>
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./Kategori.php" class="nav-link">
+                <i class=" nav-icon fa-solid fa-table-list"></i>
+                  <p>Kategori</p>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

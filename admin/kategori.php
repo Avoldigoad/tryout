@@ -201,7 +201,7 @@ $result = mysqli_query($koneksi, $sql);
 
     <!-- Main content -->
    <section class="content">
-    <div class="content-wrape shadow p-3 mb-5 bg-body-tertiary" style="width:100%;padding:10px;background:#fff;border-radius:7px;">
+    <div class="content-wrape shadow p-3 mb-5 bg-body-tertiary mt-5" style="width:100%;padding:10px;background:#fff;border-radius:7px;">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -228,7 +228,7 @@ $result = mysqli_query($koneksi, $sql);
                     <td><?= $row['nama_kategori'] ?></td>
                     <td>
                         <a href="edit/edit_kategori.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Edit</a>
-                        <a href="delete/delete_kategori.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                        <a href="hapus/hapus_kategori.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

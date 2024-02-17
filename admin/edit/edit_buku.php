@@ -199,7 +199,7 @@ $result2 = mysqli_query($koneksi, $sql2);
                     </button></a>
                 </div>
                   <div class="modal-body">
-                    <!-- Isi formulir edit di sini -->
+                      <!-- Isi formulir edit di sini -->
                     <form action="../../proses/proses_edit_buku.php?id=<?= $ruw['id'] ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="judul">Judul :</label>
