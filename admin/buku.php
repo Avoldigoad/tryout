@@ -160,16 +160,6 @@ $result1 = mysqli_query($koneksi, $sql1);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
-                  <p>Generate Laporan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
                 <a href="./Kategori.php" class="nav-link">
                 <i class=" nav-icon fa-solid fa-table-list"></i>
                   <p>Kategori</p>
@@ -228,7 +218,7 @@ $result1 = mysqli_query($koneksi, $sql1);
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="hapus/hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                        <a href="modal/isi_buku.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Detail</a>
+                        <a href="ulasan.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Ulas</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

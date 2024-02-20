@@ -10,14 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tahun_terbit = $_POST['tahun_terbit'];
     $kategori = $_POST['kategori'];
 
-    $updateSql = "UPDATE buku SET judul = '$judul', penulis = '$penulis', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', kategori_id = '$kategori' WHERE id = $user";
+    if (!empty($judul) && !empty($penulis) && !empty($penerbit) && !empty($tahun_terbit) && !empty($kategori)) {
 
-    if (mysqli_query($koneksi, $updateSql)) {
-        echo "updated successfully!";
-        header("Location: ../admin/buku.php");
-        exit();
+        // Mengupdate data buku
+        $updateSql = "UPDATE buku SET judul = '$judul', penulis = '$penulis', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', kategori_id = '$kategori' WHERE id = $user";
+
+        if (mysqli_query($koneksi, $updateSql)) {
+            echo "updated successfully!";
+            header("Location: ../admin/buku.php");
+            exit();
+        } else {
+            echo "Error updating: " . mysqli_error($koneksi);
+        }
     } else {
-        echo "Error updating: " . mysqli_error($koneksi);
+        echo "Semua field harus diisi";
     }
 } else {
     exit();

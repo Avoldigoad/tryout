@@ -160,16 +160,6 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
-                  <p>Generate Laporan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
                 <a href="./Kategori.php" class="nav-link">
                 <i class=" nav-icon fa-solid fa-table-list"></i>
                   <p>Kategori</p>
@@ -273,7 +263,7 @@ $result2 = mysqli_query($koneksi, $sql2);
   </div>
   </div>
    </section>
-
+ 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->

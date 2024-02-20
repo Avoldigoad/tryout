@@ -155,16 +155,6 @@ $result = mysqli_query($koneksi, $sql);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
-                  <p>Generate Laporan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
                 <a href="./Kategori.php" class="nav-link">
                 <i class=" nav-icon fa-solid fa-table-list"></i>
                   <p>Kategori</p>
@@ -227,7 +217,7 @@ $result = mysqli_query($koneksi, $sql);
                     <td><?= $i ?></td>
                     <td><?= $row['nama_kategori'] ?></td>
                     <td>
-                        <a href="edit/edit_kategori.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                        <a href="edit/edit_kategori.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="hapus/hapus_kategori.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
                     </td>
                 </tr>

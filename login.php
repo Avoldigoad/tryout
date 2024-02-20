@@ -22,11 +22,12 @@ header('location: admin/index.php');
 elseif($data['role'] == 'petugas'){
 $_SESSION['id'] = $data['id'];
 $_SESSION['role'] = $data['role'];
+header('location: petugas/index.php');
 //echo"Masuk ke petugas";
 }
 elseif($data['role'] == 'peminjam'){
 $_SESSION['role'] = $data['role'];
-header('location: admin/peminjam.php');
+header('location: peminjam/index.php');
 //echo"Masuk ke peminjam"; 
 }
 //header('location: admin/index.php');
@@ -54,53 +55,102 @@ echo "akun tidak ada";
   <link rel="stylesheet" href="dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
+  <style>
+  body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group-text {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .form-control {
+            border-radius: 0 5px 5px 0;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <a href="admin/index.php"><b>Login</b></a>
-  </div>
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg"></p>
-
-      <form action="login.php" method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="username" placeholder="Username">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+        <h2>Login</h2>
+        <form action="login.php" method="post">
+            <div class="input-group">
+                <input type="text" class="form-control" name="username" placeholder="Username">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+            <div class="input-group">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
             </div>
-          </div>
+            <button type="submit" name="login" class="btn btn-primary">Login</button>
+        </form>
+        <div class="error-message">
+            <!-- Tampilkan pesan error di sini -->
         </div>
-        <div class="row">
-          <div class="col-8">
-          <p class="mb-0">
-        <a href="register.php" class="text-center">Register</a>
+        <div class="success-message">
+            <!-- Tampilkan pesan berhasil di sini -->
+        </div>
+        <p class="mb-0">
+            <a href="register.php">Register</a>
         </p>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" name="login" class="btn btn-primary btn-block">Login</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      
     </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
 <!-- /.login-box -->
 
 <!-- jQuery -->
@@ -111,3 +161,4 @@ echo "akun tidak ada";
 <script src="dashboard/dist/js/adminlte.min.js"></script>
 </body>
 </html>
+

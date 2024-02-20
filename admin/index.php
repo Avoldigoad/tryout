@@ -7,8 +7,15 @@ $result1 = mysqli_query($koneksi, $sql1);
 $sql2 = "SELECT * FROM user";
 $result2 = mysqli_query($koneksi, $sql2);
 
-$sql3 = "SELECT * FROM peminjaman";
+$sql3 = "SELECT peminjaman.*, user.nama_lengkap,buku.judul, perpustakaan.nama_perpus 
+         FROM peminjaman
+        INNER JOIN user ON peminjaman.user =user.id
+        INNER JOIN buku ON peminjaman.buku =buku.id
+        INNER JOIN perpustakaan ON peminjaman.perpus_id =perpustakaan.id";
 $result3 = mysqli_query($koneksi, $sql3);
+
+$sql4 = "SELECT * FROM peminjaman";
+$result4 = mysqli_query($koneksi, $sql4);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +72,7 @@ $result3 = mysqli_query($koneksi, $sql3);
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x: hidden;">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -154,16 +161,6 @@ $result3 = mysqli_query($koneksi, $sql3);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
-                  <p>Generate Laporan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
                 <a href="./Kategori.php" class="nav-link">
                 <i class=" nav-icon fa-solid fa-table-list"></i>
                   <p>Kategori</p>
@@ -185,13 +182,11 @@ $result3 = mysqli_query($koneksi, $sql3);
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="ml-2">Dashboard</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
+
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -200,7 +195,7 @@ $result3 = mysqli_query($koneksi, $sql3);
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container-fluid ml-5">
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
@@ -237,7 +232,7 @@ $result3 = mysqli_query($koneksi, $sql3);
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?php echo mysqli_num_rows($result3);?></h3>
+                <h3><?php echo mysqli_num_rows($result4);?></h3>
 
                 <p>Peminjaman</p>
               </div>
@@ -249,6 +244,42 @@ $result3 = mysqli_query($koneksi, $sql3);
           </div>
         </div>
   </div>
+  <section class="content d-flex flex-col">
+      <div class="container-fluid">
+    <table class="table" style="margin-top:30px;width:97%; position:relative;left:50px;">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Perpustakaan</th>
+                <th>Nama</th>
+                <th>Buku</th>
+                <th>Tanggal_peminjaman</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i=0; while ($row = mysqli_fetch_assoc($result3)) :  $i++; ?>
+                <tr>
+                    <td><?= $i ?></td>
+                    <td><?= $row['nama_perpus'] ?></td>
+                    <td><?= $row['nama_lengkap'] ?></td>
+                    <td><?= $row['judul'] ?></td>
+                    <td><?= $row['tanggal_peminjaman'] ?></td>
+                    <td><?= $row['status_peminjaman']?></td>
+                    <td>
+                    <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="hapus/hapus_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                    <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Download</a>
+                  </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+  </div>
+    </section>
+  </div>
+</div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -257,7 +288,6 @@ $result3 = mysqli_query($koneksi, $sql3);
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="../dashboard/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

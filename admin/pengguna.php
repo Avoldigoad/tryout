@@ -151,16 +151,6 @@ $result = mysqli_query($koneksi, $sql);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
-                  <p>Generate Laporan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
                 <a href="./Kategori.php" class="nav-link">
                 <i class=" nav-icon fa-solid fa-table-list"></i>
                   <p>Kategori</p>
@@ -202,7 +192,6 @@ $result = mysqli_query($koneksi, $sql);
                   <tr>
                       <th>No</th>
                       <th>Nama lengkap</th>
-                      <th>Perpustakaan</th>
                       <th>Username</th>
                       <th>Email</th>
                       <th>Alamat</th>
@@ -215,7 +204,6 @@ $result = mysqli_query($koneksi, $sql);
                       <tr>
                           <td><?= $i ?></td>
                           <td><?= $row['nama_lengkap']?></td>
-                          <td><?= $row['nama_perpus']?></td>
                           <td><?= $row['username']?></td>
                           <td><?= $row['email']?></td>
                           <td><?= $row['alamat']?></td>

@@ -17,48 +17,107 @@ $result = mysqli_query($koneksi, $sql);
   <link rel="stylesheet" href="dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
+  <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .login-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
 
-  <div class="card">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg"></p>
-     <div class="scrollable-form">
-    <form action="proses/proses_register.php" method="post">
-      <h1 style="text-align:center; ">Registrasi</h1>
-        <?php
-            if ($result) {
-                echo "<label for='perpustakaan'></label>";
-                echo "<select class='form-control mb-2' name='perpustakaan' required>";
+<div class="card">
+        <h1>Registrasi</h1>
+        <form action="proses/proses_register.php" method="post">
+            <?php
+                if ($result) {
+                    echo "<div class='form-group'>";
+                    echo "<label for='perpustakaan'></label>";
+                    echo "<select class='form-control' name='perpustakaan' required>";
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $nama_perpustakaan = $row['nama_perpus'];
-                    $id_perpus = $row['id'];
-                    echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $nama_perpustakaan = $row['nama_perpus'];
+                        $id_perpus = $row['id'];
+                        echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
                     }
 
                     echo "</select>";
+                    echo "</div>";
                 } else {
                     echo "Gagal mengambil data";
                 }
-        ?>
-        <input class="form-grup mb-2" type="text" name="username" placeholder="Username" required>
-        <input class="form-grup mb-2" type="password" name="password" placeholder="Password" required>
-        <input class="form-grup mb-2" type="email" name="email" placeholder="Email" required>
-        <input class="form-grup mb-2" type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
-        <textarea class="form-grup mb-2" type="textarea" name="alamat" placeholder="Alamat" required></textarea>
-        <input class="form-grup mb-2" type="text" name="role" value="peminjam" style="display: none;">
-        <button class="form-grup mb-2 btn btn-primary " type="submit" name="daftar">Daftar   </button>
-    </form>
+            ?>
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="alamat" placeholder="Alamat" required></textarea>
+            </div>
+            <input type="text" name="role" value="peminjam" style="display: none;">
+            <button type="submit" class="btn btn-primary" name="daftar">Daftar</button>
+        </form>
+        <div class="success-message">
+            <!-- Tampilkan pesan berhasil di sini -->
+        </div>
+        <a href="login.php" class="login-link">Sudah punya akun? Login</a>
     </div>
-
-      <a href="login.php" class="text-center">I already have a membership</a>
-    </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
-</div>
-<!-- /.register-box -->
 
 <!-- jQuery -->
 <script src="dashboard/plugins/jquery/jquery.min.js"></script>

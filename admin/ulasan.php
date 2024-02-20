@@ -1,6 +1,12 @@
 <?php
 include '../koneksi.php';
 
+$sql4 = "SELECT ulasan_buku.*, user.nama_lengkap, buku.judul 
+         FROM ulasan_buku 
+         INNER JOIN user ON ulasan_buku.user = user.id
+         INNER JOIN buku ON ulasan_buku.buku = buku.id";
+$result4 = mysqli_query($koneksi, $sql4);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +63,7 @@ include '../koneksi.php';
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x: hidden;">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -146,16 +152,6 @@ include '../koneksi.php';
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./laporan.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-file-arrow-down"></i>
-                  <p>Generate Laporan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
                 <a href="./Kategori.php" class="nav-link">
                 <i class=" nav-icon fa-solid fa-table-list"></i>
                   <p>Kategori</p>
@@ -171,7 +167,7 @@ include '../koneksi.php';
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="height:91.6vh; background-color: #fff; color:#161A30;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -185,11 +181,40 @@ include '../koneksi.php';
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+  <section class="content"> 
+  <div class="content-wraper p-3 mb-5 bg-body-tertiary" style="width:100%;margin-left:0%;padding:20px;background:#fff;border-radius:20px;margin-top: 30px;">
+  <div class="container-fluid">
+     <table class="table" style="margin: top 30px;">
+    <thead>
+      <tr>
+       <th>No</th>
+        <th>Nama Pengulas</th>
+        <th>Buku</th>
+        <th>Ulasan</th>
+        <th>Rating</th>
 
-        </div>
+      </tr>
+    </thead>
+    <tbody>
+    <?php $i = 0; while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
+  <tr>
+      <td><?= $i; ?></td>
+      <td><?= $row["nama_lengkap"]; ?></td>
+      <td><?= $row["judul"]; ?></td>
+      <td><?= $row["ulasan"]; ?></td>
+      <td><?= $row["rating"]; ?></td>
+      
+  </tr>
+<?php endwhile; ?>
+
+</tbody>
+</table>
+    </div>      
+
+</section>
+
   </div>
+</div>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
