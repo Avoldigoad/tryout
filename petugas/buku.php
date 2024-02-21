@@ -155,7 +155,6 @@ $result1 = mysqli_query($koneksi, $sql1);
         <thead>
             <tr>
                 <th>No</th>
-
                 <th>Judul</th>
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
@@ -177,9 +176,7 @@ $result1 = mysqli_query($koneksi, $sql1);
                     <td><?= $row['tahun_terbit'] ?></td>
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="hapus/hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                        <a href="modal/isi_buku.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Detail</a>
-                    </td>
+                        <a href="hapus/hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>                    </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>

@@ -2,10 +2,10 @@
 include '../../koneksi.php';
 
 $id = $_GET['id'];
-$sql1 = "SELECT * FROM kategori_buku WHERE id='$id' ";
-$result1 = mysqli_query($koneksi, $sql1);
-  
-$sql2 = "SELECT * FROM kategori_buku";
+$sql = "SELECT peminjaman.*, user.nama_lengkap, buku.judul FROM peminjaman INNER JOIN user ON peminjaman.user=user.id INNER JOIN buku ON peminjaman.buku=buku.id WHERE peminjaman.id=$id";
+$result = mysqli_query($koneksi, $sql);
+
+$sql2 = "SELECT * FROM perpustakaan";
 $result2 = mysqli_query($koneksi, $sql2);
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,6 @@ $result2 = mysqli_query($koneksi, $sql2);
             margin-right: 1000px; /* Adjust the right margin as needed */
         }
     </style>
-  <title>Buku</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -76,7 +75,7 @@ $result2 = mysqli_query($koneksi, $sql2);
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        <a class="nav-link" href="../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a class="nav-link" href="../../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
       </li>
     </ul>
   </nav>
@@ -86,7 +85,7 @@ $result2 = mysqli_query($koneksi, $sql2);
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <span class="brand-text font-weight-light">Hi Administrator</span>
+      <span class="brand-text font-weight-light">Hi</span>
     </a>
 
     <!-- Sidebar -->
@@ -105,7 +104,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.php" class="nav-link">
+                <a href="../index.php" class="nav-link">
                 <li class="nav-item menu-open">
                 <i class=" nav-icon fa-solid fa-house"></i>                  
                 <p>Dashboard</p>
@@ -116,49 +115,9 @@ $result2 = mysqli_query($koneksi, $sql2);
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./pengguna.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-users"></i>
-                  <p>Pengguna</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./peminjam.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-pen-to-square"></i>
-                  <p>Peminjaman</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./buku.php" class="nav-link">
+                <a href="../buku.php" class="nav-link">
                 <i class="nav-icon fa-solid fa-book"></i>
                   <p>Buku</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./ulasan.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-comments"></i>
-                  <p>Ulasan Buku</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./Kategori.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-table-list"></i>
-                  <p>Kategori</p>
                 </a>
               </li>
             </ul>
@@ -169,103 +128,67 @@ $result2 = mysqli_query($koneksi, $sql2);
     </div>
     <!-- /.sidebar -->
   </aside>
-  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <?php if($result1){
-                $rew = mysqli_fetch_assoc($result1);
-              ?>
-                <div class="modal-header">
-                    <h4 class="modal-title" id="editModalLabel">Edit Kategori</h4>
-                    <a href="../kategori.php"><button type="button" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button></a>
-                </div>
-                <form action="../../proses/proses_edit_kategori.php?id=<?= $rew['id']?>" method="post">
-                  <div class="modal-body">
-                    <!-- Isi formulir edit di sini -->
-          <div class="form-grup">
-            <label for="kategori">Nama Kategori:</label>
-            <input type="text" name="kategori" class="form-control" value="<?= $rew['nama_kategori']?>">
-        </div>
-        </div>
-                <div class="modal-footer">
-                        <a href="../kategori.php"><button type="submit"  class="btn btn-primary">Simpan Kategori</button></a>
-                  </div>
-                  </form>
-                <?php 
-                    }  
-                ?>
-            </div>
-        </div>
-    </div>
-    <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0"></h1>
-          </div>
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+  <div class="content-wrapper" style="margin-top:-1px;">
+    <?php $data=mysqli_fetch_assoc($result); ?>
 
-    <!-- Main content -->
-    <div class="content-wrapper" style="background-color: #EEEEEE; color:#161A30; margin-left: 6px; margin-top: -50px;">
-    <!-- Content Header (Page header) -->
-    <section class="content-header"><!-- /.container-fluid -->
+    <section class="content-header">
     </section>
 
-    <!-- Main content -->
-   <section class="content">
-    <div class="content-wrape shadow p-3 mb-5 bg-body-tertiary mt-5" style="width:100%;padding:10px;background:#fff;border-radius:7px;">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h2 style="color:#161A30;">Kategori</h2>
-            <a href="input/input_kategori.php">
-              <button type="button" class="btn btn-primary" style="margin-left:160%;margin-top:-45px;position:absolute;width:168px;">+ Tambah Kategori</button>
-            </a>
+    <section class="content">
+      <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:50%;margin-left:25%;padding:10px;background:#fff;border-radius:7px;">
+       <div class="container-fluid">
+        <h2 style="color:#161A30; text-align:center;">Edit Peminjaman</h2>
+         <form action="../proses/proses_edit_peminjaman.php?id=<?= $data['id'] ?>" method="post">
+         <?php
+            if ($result2) {
+                echo "<label for='perpustakaan' style='display:none;'>Perpustakaan :</label>";
+                echo "<select class='form-control' name='perpustakaan' style='display:none' required>";
+
+                while ($row = mysqli_fetch_assoc($result2)) {
+                    $nama_perpustakaan = $row['nama_perpus'];
+                    $id_perpus = $row['id'];
+                    echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+                    }
+
+                    echo "</select>";
+                } else {
+                    echo "Gagal mengambil data";
+                }
+        ?>
+            <div class="form-group">
+                <label for="nama_lengkap">Nama peminjam :</label>
+                <input type="text" class="form-control" name="nama_lengkap"  value="<?= $data['nama_lengkap'] ?>">
+            </div>
+            <div class="form-group">
+                <label for="judul">Buku :</label>
+            <input class="form-control" name="judul"  value="<?= $data['judul'] ?>">
+            </div>
+            <div class="form-group">
+                <label for="tanggal_peminjaman">Tanggal peminjaman :</label>
+                <input type="date" class="form-control" name="tanggal_peminjaman" value="<?= $data['tanggal_peminjaman']?>">
+            </div>
+            <div class="form-group">
+                <label for="tanggal_pengembalian">Tanggal pengembalian :</label>
+                <input type="date" class="form-control" name="tanggal_pengembalian" value="<?= $data['tanggal_pengembalian']?>">
+            </div>
+            <div class="form-group">
+          <label for="status">Status :</label>
+          <select class="form-control" name="status_peminjaman" required>
+            <option value=""><?= $data['status_peminjaman']?></option>
+            <option value="Dipinjam">Dipinjam</option>
+            <option value="Dikembalikan">Dikembalikan</option>
+          </select>
+            </div>
+                <div class="footer text-center">
+                <a href="../index.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+         </form>
           </div>
         </div>
-      </div>
-    <div class="container-fluid" style="width: 90%;">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Kategori</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $i=0; while ($row = mysqli_fetch_assoc($result2)) :  $i++; ?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?= $row['nama_kategori'] ?></td>
-                    <td>
-                        <a href="edit/edit_kategori.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="hapus/hapus_kategori.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-  </div>
-    </div>
-   </section>
+    </section>
   </div>
 </div>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="../../dashboard/plugins/jquery/jquery.min.js"></script>
@@ -301,10 +224,5 @@ $result2 = mysqli_query($koneksi, $sql2);
 <script src="../../dashboard/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dashboard/dist/js/pages/dashboard.js"></script>
-<script>
-        $(document).ready(function(){
-            $('#editModal').modal('show');
-        });
-</script>
 </body>
 </html>

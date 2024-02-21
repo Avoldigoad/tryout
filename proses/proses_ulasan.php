@@ -1,8 +1,8 @@
 <?php
 include "../koneksi.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_buku = $_POST["buku"];
-    $id_user = $_POST["nama"];
+    $id_buku = $_POST["judul"];
+    $id_user = $_POST["nama_lengkap"];
     $rating = $_POST["rating"];
     $ulasan = $_POST["ulasan"];
     if ($rating > 5) {

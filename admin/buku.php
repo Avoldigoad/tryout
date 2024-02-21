@@ -218,7 +218,7 @@ $result1 = mysqli_query($koneksi, $sql1);
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="hapus/hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                        <a href="ulasan.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Ulas</a>
+                        <a href="ulasan_modal.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Ulas</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

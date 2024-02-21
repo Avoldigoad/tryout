@@ -1,12 +1,25 @@
-<?php
+<?php 
 include '../koneksi.php';
+session_start();
 
-$sql4 = "SELECT ulasan_buku.*, user.nama_lengkap, buku.judul 
-         FROM ulasan_buku 
-         INNER JOIN user ON ulasan_buku.user = user.id
-         INNER JOIN buku ON ulasan_buku.buku = buku.id";
+if(!$_SESSION["id"]){
+  header("Location:../login.php");
+}
+
+$sql = "SELECT * FROM buku";
+$result = mysqli_query($koneksi, $sql);
+
+$sql5 = "SELECT * FROM buku";
+$result5 = mysqli_query($koneksi, $sql5);
+
+$sql2 = "SELECT * FROM perpustakaan";
+$result2 = mysqli_query($koneksi, $sql2);
+
+$sql3 = "SELECT * FROM user WHERE role='peminjam'";
+$result3 = mysqli_query($koneksi, $sql3);
+
+$sql4 = "SELECT * FROM ulasan_buku";
 $result4 = mysqli_query($koneksi, $sql4);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +28,10 @@ $result4 = mysqli_query($koneksi, $sql4);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
         /* CSS untuk mengatur teks di tengah */
+        .isi:hover{
+            background-color: #525CEB;
+            color:#FFf;
+        }
         .brand-link {
             text-align: center;
             display: flex;
@@ -40,7 +57,7 @@ $result4 = mysqli_query($koneksi, $sql4);
             margin-right: 1000px; /* Adjust the right margin as needed */
         }
     </style>
-  <title>Dashboard</title>
+  <title>Buku</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -63,7 +80,7 @@ $result4 = mysqli_query($koneksi, $sql4);
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x: hidden;">
+<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x:hidden;">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -165,53 +182,123 @@ $result4 = mysqli_query($koneksi, $sql4);
     </div>
     <!-- /.sidebar -->
   </aside>
+  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <?php if($result2){
+                $ruw = mysqli_fetch_assoc($result2);
+              ?>
+                <div class="modal-header">            
+                    <a href="buku.php"><button type="button" class="close" aria-label="Close" style="margin-left:430px">
+                        <span aria-hidden="true">&times;</span>
+                    </button></a>
+                </div>
+                  <div class="modal-body">
+                      <!-- Isi formulir edit di sini -->
+                      <form action="../proses/proses_ulasan.php" method="post">
+            <?php
+            if ($result3) {
+                echo "<label for='nama_lengkap'>Nama Pengulas :</label>";
+                echo "<select class='form-control' name='nama_lengkap' required>";
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="height:91.6vh; background-color: #fff; color:#161A30;">
+                while ($row = mysqli_fetch_assoc($result3)) {
+                    $nama_lengkap = $row['nama_lengkap'];
+                    $user_id = $row['id'];
+                    echo "<option value='$user_id'>$nama_lengkap</option>";
+                    }
+
+                    echo "</select>";
+                } else {
+                    echo "Gagal mengambil data";
+                }
+        ?>
+            <?php
+            if ($result) {
+                echo "<label for='judul'>Buku :</label>";
+                echo "<select class='form-control' name='judul' required>";
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $judul = $row['judul'];
+                    $buku_id = $row['id'];
+                    echo "<option value='$buku_id'>$judul</option>";
+                    }
+
+                    echo "</select>";
+                } else {
+                    echo "Gagal mengambil data";
+                }
+        ?>
+            <div class="form-group">
+            <label for="ulasan">Ulasan :</label>
+            <input class="form-control" id="ulasan" name="ulasan">
+            </div>
+            <div class="form-group">
+            <label for="rating">Rating :</label>
+            <input class="form-control" id="rating" name="rating">
+            </div>
+                <div class="footer text-center">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+         </form>
+                 </div>
+                 <?php 
+                    }  
+                ?>
+            </div>
+        </div>
+    </div>
+  <div class="content-wrapper " style="height:91.6vh; background-color: #fff; color:#161A30;">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
+    <section class="content-header">
+      <div class="container-fluid ">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Ulasan Buku</h1>
-          </div>
-        </div><!-- /.row -->
+            <h1 style="color:#161A30;">Buku</h1>
+            <a href="input/input_buku.php">
+              <button type="button" class="btn btn-primary" style="margin-left:170%;margin-top:-30px;position:absolute;width:140px;">Tambah Buku</button>
+            </a>
+          </div>            
+        </div>
       </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
+    </section>
     <!-- Main content -->
-  <section class="content"> 
-  <div class="content-wraper p-3 mb-5 bg-body-tertiary" style="width:100%;margin-left:0%;padding:20px;background:#fff;border-radius:20px;margin-top: 30px;">
-  <div class="container-fluid">
-     <table class="table" style="margin: top 30px;">
-    <thead>
-      <tr>
-       <th>No</th>
-        <th>Nama Pengulas</th>
-        <th>Buku</th>
-        <th>Ulasan</th>
-        <th>Rating</th>
-      </tr>
-    </thead>
-    <tbody>
-    <?php $i = 0; while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
-  <tr>
-      <td><?= $i; ?></td>
-      <td><?= $row["nama_lengkap"]; ?></td>
-      <td><?= $row["judul"]; ?></td>
-      <td><?= $row["ulasan"]; ?></td>
-      <td><?= $row["rating"]; ?></td>
-      
-  </tr>
-<?php endwhile; ?>
+    <section class="content d-flex flex-col">
+      <div class="container-fluid">
+    <table class="table" style="margin-top:30px;width:90%; position:relative;left:50px;">
+        <thead>
+            <tr>
+                <th>No</th>
 
-</tbody>
-</table>
-    </div>      
-
-</section>
-
+                <th>Judul</th>
+                <th>Penerbit</th>
+                <th>Tahun Terbit</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i=0; while ($row = mysqli_fetch_assoc($result5)) :  $i++; ?>
+                <tr>
+                    <td><?= $i ?></td>
+                    <td class='d-flex'>
+                      <div>
+                        <b><?= $row['judul'] ?></b><br> 
+                        <?= $row['penulis'] ?>
+                        
+                      </div>
+                  </td>
+                    <td><?= $row['penerbit'] ?></td>
+                    <td><?= $row['tahun_terbit'] ?></td>
+                    <td>
+                        <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="hapus/hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                        <a href="ulasan_modal.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Ulas</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+  </div>
+    </section>
   </div>
 </div>
 
@@ -257,5 +344,10 @@ $result4 = mysqli_query($koneksi, $sql4);
 <script src="../dashboard/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../dashboard/dist/js/pages/dashboard.js"></script>
+<script>
+        $(document).ready(function(){
+            $('#editModal').modal('show');
+        });
+</script>
 </body>
 </html>
