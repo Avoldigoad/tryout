@@ -213,7 +213,6 @@ $result2 = mysqli_query($koneksi, $sql2);
           <label for="status">Status :</label>
           <select class="form-control" name="status_peminjaman" required>
             <option value=""><?= $data['status_peminjaman']?></option>
-            <option value="Dipinjam">Dipinjam</option>
             <option value="Dikembalikan">Dikembalikan</option>
           </select>
             </div>

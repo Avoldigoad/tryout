@@ -142,7 +142,7 @@ $result1 = mysqli_query($koneksi, $sql1);
           <div class="col-sm-6">
             <h1 style="color:#161A30;">Buku</h1>
             <a href="input/input_buku.php">
-              <button type="button" class="btn btn-primary" style="margin-left:170%;margin-top:-30px;position:absolute;width:140px;">Tambah Buku</button>
+              <button type="button" class="btn btn-primary" style="margin-left:170%;margin-top:-30px;position:absolute;width:140px;">+Tambah Buku</button>
             </a>
           </div>            
         </div>
@@ -166,17 +166,19 @@ $result1 = mysqli_query($koneksi, $sql1);
                 <tr>
                     <td><?= $i ?></td>
                     <td class='d-flex'>
+                      <img src="../asset/<?= $row['foto']?>" alt="" style="width: 50px; height: 55px; border-radius: 3px; margin-right:10px;">
                       <div>
                         <b><?= $row['judul'] ?></b><br> 
                         <?= $row['penulis'] ?>
-                        
                       </div>
                   </td>
                     <td><?= $row['penerbit'] ?></td>
                     <td><?= $row['tahun_terbit'] ?></td>
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="hapus/hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>                    </td>
+                        <a href="hapus/hapus_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                        <a href="detail/detail_buku.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Detail</a>                                     
+                      </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>

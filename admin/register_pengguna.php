@@ -182,7 +182,7 @@ $result = mysqli_query($koneksi, $sql);
     <section class="content-header">
     </section>
 
-    <section class="content">
+    <section class="content" style="height: 1000px;">
       <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="overflow-x:hidden; width:50%;margin-left:10%;padding:10px;background:#fff;border-radius:7px;">
        <div class="container-fluid">
         <h2 style="color:#161A30; text-align:center;">Registrasi</h2>        

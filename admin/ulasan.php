@@ -1,11 +1,14 @@
 <?php
 include '../koneksi.php';
 
-$sql4 = "SELECT ulasan_buku.*, user.nama_lengkap, buku.judul 
-         FROM ulasan_buku 
-         INNER JOIN user ON ulasan_buku.user = user.id
-         INNER JOIN buku ON ulasan_buku.buku = buku.id";
-$result4 = mysqli_query($koneksi, $sql4);
+$query = "SELECT buku.id as buku_id, buku.foto, buku.judul, buku.penulis, ulasan_buku.buku, ulasan_buku.rating,
+          COUNT(ulasan_buku.id) as total,
+          AVG(ulasan_buku.rating) as average_rating
+        FROM buku
+        LEFT JOIN ulasan_buku ON buku.id = ulasan_buku.buku
+        GROUP BY buku.id
+        ORDER BY average_rating DESC";
+$result4 = mysqli_query($koneksi, $query);
 
 ?>
 <!DOCTYPE html>
@@ -188,24 +191,30 @@ $result4 = mysqli_query($koneksi, $sql4);
     <thead>
       <tr>
        <th>No</th>
-        <th>Nama Pengulas</th>
         <th>Buku</th>
-        <th>Ulasan</th>
-        <th>Rating</th>
+        <th>Total Ulasan</th>
+        <th>Rata-rata Rating</th>
+        <th>Aksi</th>
       </tr>
     </thead>
     <tbody>
     <?php $i = 0; while ($row = mysqli_fetch_assoc($result4)) : $i++; ?>
   <tr>
-      <td><?= $i; ?></td>
-      <td><?= $row["nama_lengkap"]; ?></td>
-      <td><?= $row["judul"]; ?></td>
-      <td><?= $row["ulasan"]; ?></td>
-      <td><?= $row["rating"]; ?></td>
-      
-  </tr>
+      <td><?= $i ?></td>
+                    <td class='d-flex'>
+                          <img src="../asset/<?= $row['foto'] ?>" alt="Cover Buku" style="height:50px; width:50px;margin-right:10px;border-radius:3px"> 
+                          <div>
+                            <b><?= $row['judul']; ?></b><br>
+                            <p><?= $row['penulis']; ?></p>                            
+                          </div>
+                      </td>
+                    <td><?= $row['total'] ?></td>
+                    <td><?= number_format($row['average_rating'], 1) ?></td>
+                    <td>
+                    <a href="detail/detail_ulasan.php?id=<?= $row['buku_id']; ?>" class="btn btn-warning">Detail</a>
+                    </td>
+    </tr>
 <?php endwhile; ?>
-
 </tbody>
 </table>
     </div>      

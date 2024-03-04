@@ -209,7 +209,15 @@ $result3 = mysqli_query($koneksi, $sql3);
                  }
               ?>
           <div class="form-grup">
-            <label for="judul">Judul buku:</label>
+            <label for="cover">Upload Cover :</label>
+            <input type="file" name="cover" class="form-control" required style="height:45px;">
+          </div>
+          <div class="form-grup">
+            <label for="pdf">Pdf :</label>
+            <input type="file" name="pdf" class="form-control" required style="height:45px;">
+        </div>
+          <div class="form-grup">
+            <label for="judul">Judul buku :</label>
             <input type="text" name="judul" class="form-control" required>
         </div>
         <div class="form-grup">
@@ -221,8 +229,16 @@ $result3 = mysqli_query($koneksi, $sql3);
             <input type="text" name="penerbit" class="form-control" required>
         </div>
         <div class="form-grup">
+            <label for="sinopsis">Sinopsis :</label>
+            <textarea type="text" name="sinopsis" class="form-control" required></textarea>
+        </div>
+        <div class="form-grup">
             <label for="tahun_terbit">Tahun terbit :</label>
             <input type="date" name="tahun_terbit" class="form-control" required>
+        </div>
+        <div class="form-grup">
+            <label for="stok">Stok Buku :</label>
+            <input type="number" name="stok" class="form-control" required>
         </div>
 
         <label>Kategori :</label>
@@ -235,7 +251,6 @@ $result3 = mysqli_query($koneksi, $sql3);
           <?php endwhile ?>
         </select>
         </div>
-                 
                       <div class="modal-footer">
                         <a href="../buku.php"><button type="submit"  class="btn btn-primary">Simpan Buku</button></a>
                   </div>
@@ -268,7 +283,6 @@ $result3 = mysqli_query($koneksi, $sql3);
         <thead>
             <tr>
                 <th>No</th>
-
                 <th>Judul</th>
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
@@ -280,6 +294,7 @@ $result3 = mysqli_query($koneksi, $sql3);
                 <tr>
                     <td><?= $i ?></td>
                     <td class='d-flex'>
+                    <img src="../../asset/<?= $row['foto']?>" alt="" style="width: 50px; height: 55px; border-radius: 3px; margin-right:10px;">
                       <div>
                         <b><?= $row['judul'] ?></b><br>
                         <?= $row['penulis'] ?>
@@ -290,7 +305,6 @@ $result3 = mysqli_query($koneksi, $sql3);
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="delete/delete_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                        <a href="modal/isi_buku.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Detail</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

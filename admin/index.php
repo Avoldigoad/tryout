@@ -24,6 +24,9 @@ $result4 = mysqli_query($koneksi, $sql4);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
         /* CSS untuk mengatur teks di tengah */
+        body {
+            overflow-x: hidden;
+        }
         .brand-link {
             text-align: center;
             display: flex;
@@ -72,221 +75,230 @@ $result4 = mysqli_query($koneksi, $sql4);
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed" style="overflow-x: hidden;">
-<div class="wrapper">
+ <body class="hold-transition sidebar-mini layout-fixed">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        <a class="nav-link" href="../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
+    <div class="wrapper">
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="" class="brand-link">
-      <span class="brand-text font-weight-light">Hi Administrator</span>
-    </a>
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" href="../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="" class="brand-link">
+                <span class="brand-text font-weight-light">Hi Administrator</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                               with font-awesome or any other icon font library -->
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./index.php" class="nav-link">
+                                        <li class="nav-item menu-open">
+                                            <i class=" nav-icon fa-solid fa-house"></i>
+                                            <p>Dashboard</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./pengguna.php" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-users"></i>
+                                        <p>Pengguna</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./peminjam.php" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-pen-to-square"></i>
+                                        <p>Peminjaman</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./buku.php" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-book"></i>
+                                        <p>Buku</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./ulasan.php" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-comments"></i>
+                                        <p>Ulasan Buku</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./Kategori.php" class="nav-link">
+                                        <i class=" nav-icon fa-solid fa-table-list"></i>
+                                        <p>Kategori</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="ml-2">Dashboard</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <!-- Breadcrumbs -->
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid ml-5">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3><?php echo mysqli_num_rows($result1); ?></h3>
+
+                                    <p>Total Buku</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-book"></i>
+                                </div>
+                                <a href="buku.php" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-md-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3><?php echo mysqli_num_rows($result2); ?><sup
+                                            style="font-size: 20px"></sup></h3>
+
+                                    <p>Pengguna</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                                <a href="pengguna.php" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-md-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3><?php echo mysqli_num_rows($result4); ?></h3>
+
+                                    <p>Peminjaman</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="peminjam.php" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="content">
+                    <div class="container-fluid">
+                        <table class="table" style="margin-top:30px;width:95%; position:relative;left:50px;">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Perpustakaan</th>
+                                    <th>Nama</th>
+                                    <th>Buku</th>
+                                    <th>Tanggal_peminjaman</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 0;
+                                while ($row = mysqli_fetch_assoc($result3)) :  $i++; ?>
+                                    <tr>
+                                        <td><?= $i ?></td>
+                                        <td><?= $row['nama_perpus'] ?></td>
+                                        <td><?= $row['nama_lengkap'] ?></td>
+                                        <td><?= $row['judul'] ?></td>
+                                        <td><?= $row['tanggal_peminjaman'] ?></td>
+                                        <td><?= $row['status_peminjaman'] ?></td>
+                                        <td>
+                                            <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+            <!-- /.content -->
         </div>
-      </div>
+        <!-- /.content-wrapper -->
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.php" class="nav-link">
-                <li class="nav-item menu-open">
-                <i class=" nav-icon fa-solid fa-house"></i>                  
-                <p>Dashboard</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./pengguna.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-users"></i>
-                  <p>Pengguna</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./peminjam.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-pen-to-square"></i>
-                  <p>Peminjaman</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./buku.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-book"></i>
-                  <p>Buku</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./ulasan.php" class="nav-link">
-                <i class="nav-icon fa-solid fa-comments"></i>
-                  <p>Ulasan Buku</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item menu-open">
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./Kategori.php" class="nav-link">
-                <i class=" nav-icon fa-solid fa-table-list"></i>
-                  <p>Kategori</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="ml-2">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid ml-5">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result1);?></h3>
-
-                <p>Total Buku</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-book"></i>
-              </div>
-              <a href="buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result2);?><sup style="font-size: 20px"></sup></h3>
-
-                <p>Pengguna</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-users"></i>
-              </div>
-              <a href="pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><?php echo mysqli_num_rows($result4);?></h3>
-
-                <p>Peminjaman</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="peminjam.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        </div>
-  </div>
-  <section class="content d-flex flex-col">
-      <div class="container-fluid">
-    <table class="table" style="margin-top:30px;width:97%; position:relative;left:50px;">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Perpustakaan</th>
-                <th>Nama</th>
-                <th>Buku</th>
-                <th>Tanggal_peminjaman</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $i=0; while ($row = mysqli_fetch_assoc($result3)) :  $i++; ?>
-                <tr>
-                    <td><?= $i ?></td>
-                    <td><?= $row['nama_perpus'] ?></td>
-                    <td><?= $row['nama_lengkap'] ?></td>
-                    <td><?= $row['judul'] ?></td>
-                    <td><?= $row['tanggal_peminjaman'] ?></td>
-                    <td><?= $row['status_peminjaman']?></td>
-                    <td>
-                    <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="hapus/hapus_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                    <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Download</a>
-                  </td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-  </div>
-    </section>
-  </div>
-</div>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
 <!-- ./wrapper -->
 <!-- jQuery -->
 <script src="../dashboard/plugins/jquery/jquery.min.js"></script>

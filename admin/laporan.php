@@ -182,7 +182,7 @@ include '../koneksi.php';
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-
+        
   </div>
 </section>
   <!-- Control Sidebar -->

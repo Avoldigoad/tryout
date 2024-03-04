@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3308
--- Waktu pembuatan: 17 Jan 2024 pada 23.53
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.1.2
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 03 Mar 2024 pada 13.08
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,29 +35,22 @@ CREATE TABLE `buku` (
   `penerbit` varchar(255) NOT NULL,
   `tahun_terbit` int(11) NOT NULL,
   `kategori_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `stok` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `sinopsis` text NOT NULL,
+  `pdf` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `buku`
 --
 
-INSERT INTO `buku` (`id`, `perpus_id`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `kategori_id`, `created_at`) VALUES
-(1, 1, 'Dilan & Milea', 'Pandi Zulfikar', 'PT. Buku Indonesia', 2018, 1, '2024-01-17 13:32:19'),
-(2, 1, 'Suatu Hari yang Nikmat', 'Vanzul baik', 'Angkringan Milenial', 2024, 1, '2024-01-17 13:39:32');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `detail_peminjaman`
---
-
-CREATE TABLE `detail_peminjaman` (
-  `id` int(11) NOT NULL,
-  `peminjaman_id` int(11) NOT NULL,
-  `buku_id` int(11) NOT NULL,
-  `created_ad` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `buku` (`id`, `perpus_id`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `kategori_id`, `created_at`, `stok`, `foto`, `sinopsis`, `pdf`) VALUES
+(16, 1, 'Algoritma Mechine Learning dengan Python', 'Dr. Joseph Teguh Santoso', 'YAYASAN PRIMA AGUS TEKNIK', 2022, 8, '2024-03-02 13:45:36', 9, '65e1e4d31a1e9.png', 'Buku ini dibagi menjadi 4 Bab, bab pertama menulis memaparkan bahwa penulis telah mempelajari banyak konsep yang berguna, beberapa konsep yang mungkin membuat Anda sedikit kebingungan. Pembelajaran mesin: ML mengacu pada membuat mesin bekerja lebih baik pada beberapa tugas, menggunakan data yang diberikan. Diantaranya pembelajaran mesin datang dalam berbagai jenis, seperti pembelajaran terawasi, batch, tanpa pengawasan, dan online. Untuk menjalankan proyek ML, mengumpulkan data dalam set pelatihan, lalu mengumpankan set tersebut ke algoritma pembelajaran untuk mendapatkan keluaran, “prediksi”. Jika ingin mendapatkan output yang tepat, sistem harus menggunakan data yang jelas, yang tidak terlalu kecil dan yang tidak memiliki fitur yang tidak relevan. Di bab kedua, mempelajari konsep baru yang berguna dan menerapkan banyak jenis algoritma klasifikasi. Juga konsep baru, seperti: ROC (karakteristik pengoperasian receiver, alat yang digunakan dengan pengklasifikasi biner); Analisis Kesalahan, Cara melatih pengklasifikasi acak menggunakan fungsi Scikit, Memahami Klasifikasi Multi-Output dan multi-Label. Bab ketiga, mempelajari konsep baru, dan mempelajari cara melatih model menggunakan berbagai jenis algoritma, mempelajari kapan harus menggunakan setiap algoritma, termasuk: Penurunan gradien batch, Penurunan gradien mini-batch, Regresi polynomial, Model linier teratur, Regresi punggungan, Regresi Lasso. Bab Terakhir akan membahas tentang algoritma pembelajaran mesin diantaranya regresi linier, kompleksitas komputasi, dan penurunan gradien.', '65e1e4d31a1ec.pdf'),
+(17, 1, '101 Kisah Tabi’in ', 'Hepi Andi Baston', 'PUSTAKA AL-KAUTSAR', 2006, 9, '2024-03-02 13:42:50', 5, '65e1e951ca630.png', 'Sejarah Islam mewariskan begitu banyak teladan bercahaya pada peradan manusia ini.Ada Muhammad Rasulullah SAW yang semakin dilecehkan ditimur maupun dibarat', '65e1e951ca632.pdf'),
+(18, 1, 'Breaking Dawn (Awal yang Baru)', 'Stephenie Meyer', 'Gramedia', 2020, 10, '2024-03-02 13:42:56', 7, '65e1ea886247b.png', 'Bila kau mencintai orang yang akan membunuhmu, kau tak punya pilihan. Bila nyawamu satu-satunya yang harus kauberikan untuk orang yang kaucintai, bagaimana mungkin\r\nkau tidak memberikannya?', '65e1ea886247e.pdf'),
+(19, 1, 'My Hero Academia', 'Kohei Horikoshi', 'M&C', 2020, 11, '2024-03-02 13:44:11', 7, '65e32d2b18ddc.png', 'Di suatu masa saat sebagian besar orang memiliki kekuatan super yang disebut dengan ÒQuirkÓ... Aku, Izuku Midoriya, seorang penggemar ÒHeroÓ yang bercita-cita mengikuti jejak Sang Hero Nomor 1 di Dunia, ÒAll MightÓ, malah divonis tidak bisa memiliki ÒQuirkÓ. Inilah awal ceritaku... menuju Hero nomor 1 di dunia!', '65e32d2b18ddf.pdf');
 
 -- --------------------------------------------------------
 
@@ -76,7 +69,13 @@ CREATE TABLE `kategori_buku` (
 --
 
 INSERT INTO `kategori_buku` (`id`, `nama_kategori`, `created_at`) VALUES
-(1, 'Religi', '0000-00-00 00:00:00');
+(8, 'IT', '2024-03-02 13:46:24'),
+(9, 'Islami', '2024-03-01 14:12:53'),
+(10, 'Novel', '2024-03-01 14:06:07'),
+(11, 'Manga', '2024-03-01 14:06:13'),
+(12, 'Bank Soal', '2024-03-01 14:06:30'),
+(13, 'Bio Informatis', '2024-03-01 14:06:44'),
+(14, 'Buku Mapel', '2024-03-01 14:07:03');
 
 -- --------------------------------------------------------
 
@@ -104,15 +103,16 @@ CREATE TABLE `peminjaman` (
   `tanggal_peminjaman` date NOT NULL,
   `tanggal_pengembalian` date NOT NULL,
   `status_peminjaman` enum('Dipinjam','Dikembalikan','','') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `perpus_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `peminjaman`
 --
 
-INSERT INTO `peminjaman` (`id`, `user`, `buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `status_peminjaman`, `created_at`) VALUES
-(1, 1, 1, '2024-01-12', '2024-01-13', 'Dikembalikan', '2024-01-17 02:59:59');
+INSERT INTO `peminjaman` (`id`, `user`, `buku`, `tanggal_peminjaman`, `tanggal_pengembalian`, `status_peminjaman`, `created_at`, `perpus_id`) VALUES
+(12, 32, 16, '2024-02-20', '2024-02-21', 'Dikembalikan', '2024-03-01 15:56:36', 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +133,7 @@ CREATE TABLE `perpustakaan` (
 --
 
 INSERT INTO `perpustakaan` (`id`, `nama_perpus`, `alamat`, `no_tlp`, `created_at`) VALUES
-(1, 'Perpustakaan Banjar', 'Depan Terminal', '0999022332', '2024-01-17 02:50:30');
+(1, 'Perpus SMKN 1 Banjar', 'SMKN 1 Banjar', '0999022332', '2024-02-12 06:09:39');
 
 -- --------------------------------------------------------
 
@@ -149,6 +149,14 @@ CREATE TABLE `ulasan_buku` (
   `rating` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ulasan_buku`
+--
+
+INSERT INTO `ulasan_buku` (`id`, `user`, `buku`, `ulasan`, `rating`, `created_at`) VALUES
+(4, 32, 16, 'bagus', 4, '2024-03-02 12:53:39'),
+(5, 32, 16, 'bagus', 3, '2024-03-02 12:53:48');
 
 -- --------------------------------------------------------
 
@@ -173,11 +181,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `perpus_id`, `username`, `password`, `email`, `nama_lengkap`, `alamat`, `role`, `created_at`) VALUES
-(1, 0, 'iweng', '$2a$12$lzrnN..vMjHnA0VCWa8yFuGT2MeAbulEZXQCKPF4KvF3zjlnC1rR.', 'ridwanbanjar1122@gmail.com', 'Ridwan', 'Pintusinga Banjar', 'admin', '2024-01-17 02:40:22'),
-(2, 1, 'adit', '$2y$10$tqyRF.LLf9VP7750L/VC4OhgwVKPEV2E5N59aXPYb4YR1ugaUqUrm', 'adit12@gmail.com', 'Raditya', 'Pintusinga Banjar', 'peminjam', '2024-01-17 03:31:10'),
-(3, 1, 'adam', '$2y$10$zmNTg3JeHtPOyt0Veb27qOytoW8tA7lGt3qbIUXlUtt/FRzxn7ZwG', 'adamsp12@gmail.com', 'Adam Suradi', 'Pintusinga Banjar', 'petugas', '2024-01-17 03:31:55'),
-(11, 1, 'test', '$2y$10$yezmqa/N4l82KeJRhPcFvOc1GIhtNsjB1iscC3hisU/TGCuHye4Hq', 'sdfdf@gmail.com', 'zahwan', 'waf', 'peminjam', '2024-01-17 03:07:04'),
-(13, 1, 'agus', '$2y$10$rM86ZqX5fR/OTgRwW20y9.aFoAfvelbTQK6PipYbxBCLYKrWt2iZ.', 'gusmet@gmail.com', 'Agus selamet', 'Banjar Kolot', 'petugas', '2024-01-17 10:13:46');
+(1, 0, 'idon', '$2y$10$lq1QcKRSj.nCNl0fXoh4dO6Wni19p3SSzqmXJMekq/quIkjRD8K22', 'ridwanbanjar1122@gmail.com', 'Ridwan ', 'Pintusinga Banjar', 'admin', '2024-02-23 11:53:52'),
+(31, 1, 'cipung', '$2y$10$K9SU4eI8DQ9u69/zQEUW.e1353BYj.iFCLSLS4U3MnKNdPC9wZEtS', 'capung@gmail.com', 'Cipung', 'Banjar', 'petugas', '2024-03-02 12:52:41'),
+(32, 1, 'uji', '$2y$10$2FjTJ2u77RFtsw7Xy5KPK.GIVEWOc8jxEwxzO6/P5/e.yWnT12WOe', 'uji@gmail.com', 'Fauzi danar abdul karim', 'Beber', 'peminjam', '2024-03-02 12:52:31');
 
 --
 -- Indexes for dumped tables
@@ -187,12 +193,6 @@ INSERT INTO `user` (`id`, `perpus_id`, `username`, `password`, `email`, `nama_le
 -- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `detail_peminjaman`
---
-ALTER TABLE `detail_peminjaman`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -239,19 +239,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `detail_peminjaman`
---
-ALTER TABLE `detail_peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori_buku`
 --
 ALTER TABLE `kategori_buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `koleksi_pribadi`
@@ -263,7 +257,7 @@ ALTER TABLE `koleksi_pribadi`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `perpustakaan`
@@ -275,13 +269,13 @@ ALTER TABLE `perpustakaan`
 -- AUTO_INCREMENT untuk tabel `ulasan_buku`
 --
 ALTER TABLE `ulasan_buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

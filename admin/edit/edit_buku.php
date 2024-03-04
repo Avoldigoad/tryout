@@ -186,14 +186,22 @@ $result2 = mysqli_query($koneksi, $sql2);
                 <div class="modal-header">            
                     <a href="../buku.php"><button type="button" class="close" aria-label="Close" style="margin-left:430px">
                         <span aria-hidden="true">&times;</span>
-                    </button></a>
+                    </button></a> 
                 </div>
                   <div class="modal-body">
-                      <!-- Isi formulir edit di sini -->
-                    <form action="../../proses/proses_edit_buku.php?id=<?= $ruw['id'] ?>" method="post" enctype="multipart/form-data">
+                  <!-- Isi formulir edit di sini -->
+                      <form action="../../proses/proses_edit_buku.php?id=<?= $ruw['id'] ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="judul">Judul :</label>
+                <label for="judul">Judul Buku :</label>
                 <input type="text" class="form-control" name="judul"  value="<?= $ruw['judul'] ?>">
+            </div>
+            <div class="form-grup">
+            <label for="pdf">Pdf :</label>
+            <input type="file" name="pdf" class="form-control" style="height:45px;" value="<?= $ruw['pdf'] ?>">
+        </div>
+            <div class="form-group">
+                <label for="cover">Upload Cover :</label>
+                <input type="file" class="form-control" name="cover"  value="<?= $ruw['foto'] ?>">
             </div>
             <div class="form-group">
                 <label for="penulis">Penulis :</label>
@@ -203,9 +211,17 @@ $result2 = mysqli_query($koneksi, $sql2);
                 <label for="penerbit">Penerbit :</label>
                 <input type="text" class="form-control" name="penerbit" value="<?= $ruw['penerbit']?>">
             </div>
+            <div class="form-grup">
+            <label for="sinopsis">Sinopsis :</label>
+            <textarea type="text" name="sinopsis" class="form-control"><?= $ruw['sinopsis']?></textarea>
+        </div>
             <div class="form-group">
                 <label for="tahun_terbit">Tahun terbit :</label>
                 <input type="number" class="form-control" name="tahun_terbit" value="<?= $ruw['tahun_terbit']?>">
+            </div>
+            <div class="form-group">
+                <label for="stok">Stok Buku :</label>
+                <input type="number" class="form-control" name="stok" value="<?= $ruw['stok']?>">
             </div>
             <div class="form-group">
            <label>Kategori :</label>
@@ -238,7 +254,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           <div class="col-sm-6">
             <h1 style="color:#161A30;">Buku</h1>
             <a href="input/input_buku.php">
-              <button type="button" class="btn btn-primary" style="margin-left:170%;margin-top:-30px;position:absolute;width:140px;">Tambah Buku</button>
+              <button type="button" class="btn btn-primary" style="margin-left:170%;margin-top:-30px;position:absolute;width:140px;">+Tambah Buku</button>
             </a>
           </div>            
         </div>
@@ -251,7 +267,6 @@ $result2 = mysqli_query($koneksi, $sql2);
         <thead>
             <tr>
                 <th>No</th>
-
                 <th>Judul</th>
                 <th>Penerbit</th>
                 <th>Tahun Terbit</th>
@@ -263,6 +278,7 @@ $result2 = mysqli_query($koneksi, $sql2);
                 <tr>
                     <td><?= $i ?></td>
                     <td class='d-flex'>
+                    <img src="../../asset/<?= $row['foto']?>" alt="" style="width: 50px; height: 55px; border-radius: 3px; margin-right:10px;">
                       <div>
                         <b><?= $row['judul'] ?></b><br>
                         <?= $row['penulis'] ?>
@@ -274,7 +290,7 @@ $result2 = mysqli_query($koneksi, $sql2);
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="delete/delete_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                        <a href="modal/isi_buku.php?id=<?=$row['id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff">Ulas</a>
+                        <a href="detail/detail_buku.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Detail</a>                   
                     </td>
                 </tr>
             <?php endwhile; ?>

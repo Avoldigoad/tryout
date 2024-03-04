@@ -7,6 +7,7 @@ $result = mysqli_query($koneksi, $sql);
 
 $sql2 = "SELECT * FROM perpustakaan";
 $result2 = mysqli_query($koneksi, $sql2);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,10 +131,7 @@ $result2 = mysqli_query($koneksi, $sql2);
   </aside>
   <div class="content-wrapper" style="margin-top:-1px;">
     <?php $data=mysqli_fetch_assoc($result); ?>
-
     <section class="content-header">
-    </section>
-
     <section class="content">
       <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:50%;margin-left:25%;padding:10px;background:#fff;border-radius:7px;">
        <div class="container-fluid">
@@ -175,7 +173,6 @@ $result2 = mysqli_query($koneksi, $sql2);
           <label for="status">Status :</label>
           <select class="form-control" name="status_peminjaman" required>
             <option value=""><?= $data['status_peminjaman']?></option>
-            <option value="Dipinjam">Dipinjam</option>
             <option value="Dikembalikan">Dikembalikan</option>
           </select>
             </div>

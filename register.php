@@ -19,6 +19,7 @@ $result = mysqli_query($koneksi, $sql);
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
   <style>
         body {
+            background-image: url(asset/perpus3.jpg);
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
             margin: 0;

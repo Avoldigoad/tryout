@@ -15,6 +15,13 @@ $result1= mysqli_query($koneksi, $sql1);
 
 $sql2 = "SELECT * FROM buku";
 $result2 = mysqli_query($koneksi, $sql2);
+
+$sql3 = "SELECT peminjaman.*, user.nama_lengkap,buku.judul, perpustakaan.nama_perpus 
+         FROM peminjaman
+        INNER JOIN user ON peminjaman.user =user.id
+        INNER JOIN buku ON peminjaman.buku =buku.id
+        INNER JOIN perpustakaan ON peminjaman.perpus_id =perpustakaan.id";
+$result3 = mysqli_query($koneksi, $sql3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,6 +76,7 @@ $result2 = mysqli_query($koneksi, $sql2);
   <link rel="stylesheet" href="../dashboard/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../dashboard/plugins/summernote/summernote-bs4.min.css">
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="overflow-x: hidden;">
@@ -80,6 +88,7 @@ $result2 = mysqli_query($koneksi, $sql2);
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <!-- Tombol Logout -->
         <a class="nav-link" href="../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
       </li>
     </ul>
@@ -106,17 +115,19 @@ $result2 = mysqli_query($koneksi, $sql2);
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <!-- Menu Dashboard -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="./index.php" class="nav-link">
                 <li class="nav-item menu-open">
-                <i class=" nav-icon fa-solid fa-house"></i>                  
+                <i class="nav-icon fa-solid fa-house"></i>                  
                 <p>Dashboard</p>
                 </a>
               </li>
             </ul>
           </li>
+          <!-- Menu Pengguna -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -127,6 +138,7 @@ $result2 = mysqli_query($koneksi, $sql2);
               </li>
             </ul>
           </li>
+          <!-- Menu Peminjaman -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -137,6 +149,7 @@ $result2 = mysqli_query($koneksi, $sql2);
               </li>
             </ul>
           </li>
+          <!-- Menu Buku -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -147,6 +160,7 @@ $result2 = mysqli_query($koneksi, $sql2);
               </li>
             </ul>
           </li>
+          <!-- Menu Ulasan Buku -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -157,6 +171,7 @@ $result2 = mysqli_query($koneksi, $sql2);
               </li>
             </ul>
           </li>
+          <!-- Menu Kategori -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
@@ -175,7 +190,7 @@ $result2 = mysqli_query($koneksi, $sql2);
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="height:91.6vh; background-color: #fff; color:#161A30;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -190,79 +205,79 @@ $result2 = mysqli_query($koneksi, $sql2);
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content mt-7">
-    <div class="content-wraper shadow p-3 mb-5 bg-body-tertiary" style="width:50%;margin-left:25%;padding:10px;background:#fff;border-radius:7px;">
-  <div class="container-fluid">
-    <h2 style="color:#161A30; text-align:center;">Peminjaman</h2>
-    <form action="../proses/proses_input_peminjaman.php" method="post">
-      <?php
-            if ($result) {
-                echo "<label for='perpustakaan'>Perpustakaan :</label>";
-                echo "<select class='form-control' name='perpustakaan' required>";
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $nama_perpustakaan = $row['nama_perpus'];
-                    $id_perpus = $row['id'];
-                    echo "<option value='$id_perpus'>$nama_perpustakaan</option>";
+    <section class="content d-flex flex-col">
+    <div class="container-fluid">
+        <form method="GET" class="form-inline">
+          <div class="form-group">
+            <label for="start_date" class="mr-2">Tanggal Awal:</label>
+            <input type="date" id="start_date" name="start_date" class="form-control mr-2">
+          </div>
+          <div class="form-group">
+            <label for="end_date" class="mr-2">Tanggal Akhir:</label>
+            <input type="date" id="end_date" name="end_date" class="form-control mr-2">
+          </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+        <table class="table" style="margin-top:30px;width:97%; position:relative;left:50px;">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Perpustakaan</th>
+                    <th>Nama</th>
+                    <th>Buku</th>
+                    <th>Tanggal peminjaman</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $i=0;
+                while ($row = mysqli_fetch_assoc($result3)) :
+                    $tanggal_peminjaman = $row['tanggal_peminjaman'];
+                    if(isset($_GET['start_date']) && isset($_GET['end_date'])) {
+                        $start_date = $_GET['start_date'];
+                        $end_date = $_GET['end_date'];
+                        if($tanggal_peminjaman >= $start_date && $tanggal_peminjaman <= $end_date) {
+                            $i++;
+                            ?>
+                            <tr>
+                                <td><?= $i ?></td>
+                                <td><?= $row['nama_perpus'] ?></td>
+                                <td><?= $row['nama_lengkap'] ?></td>
+                                <td><?= $row['judul'] ?></td>
+                                <td><?= $tanggal_peminjaman ?></td>
+                                <td><?= $row['status_peminjaman']?></td>
+                                <td>
+                                    <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Download</a>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                    } else {
+                        $i++;
+                        ?>
+                        <tr>
+                            <td><?= $i ?></td>
+                            <td><?= $row['nama_perpus'] ?></td>
+                            <td><?= $row['nama_lengkap'] ?></td>
+                            <td><?= $row['judul'] ?></td>
+                            <td><?= $tanggal_peminjaman ?></td>
+                            <td><?= $row['status_peminjaman']?></td>
+                            <td>
+                                <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Download</a>
+                            </td>
+                        </tr>
+                    <?php
                     }
+                endwhile;
+                ?>
+            </tbody>
+        </table>
+    </div>
+</section>
 
-                    echo "</select>";
-                } else {
-                    echo "Gagal mengambil data";
-                }
-        ?>
-        <?php
-            if ($result1) {
-                echo "<label for='nama'>Nama :</label>";
-                echo "<select class='form-control' name='nama' required>";
-                echo "<option value=''></option>";
-
-                while ($riw = mysqli_fetch_assoc($result1)) {
-                    $nama_lengkap = $riw['nama_lengkap'];
-                    $id_nama = $riw['id'];
-                    echo "<option value='$id_nama'>$nama_lengkap</option>";
-                    }
-
-                    echo "</select>";
-                } else {
-                    echo "Gagal mengambil data";
-                }
-        ?>
-        <?php
-            if ($result2) {
-                echo "<label for='buku'>Buku :</label>";
-                echo "<select class='form-control' name='buku' required>";
-                echo "<option value=''></option>";
-
-                while ($rew = mysqli_fetch_assoc($result2)) {
-                    $nama_buku = $rew['judul'];
-                    $id_buku = $rew['id'];
-                    echo "<option value='$id_buku'>$nama_buku</option>";
-                    }
-
-                    echo "</select>";
-                } else {
-                    echo "Gagal mengambil data";
-                }
-        ?>
-        <div class="form-grup">
-            <label for="tanggal_peminjaman">Tanggal peminjaman :</label>
-            <input type="date" name="tanggal_peminjaman" class="form-control" required>
-        </div>
-        <div class="form-grup">
-            <label for="status">Status :</label>
-            <select name="status" class="form-control">
-                <option value="Dipinjam">Dipinjam</option>
-                <option value="Dikembalikan">Dikembalikan</option>
-            </select>
-        </div>
-        <div class="form-grup" style="margin-left: 40%;">
-        <button type="submit" name="registrasi" class="btn btn-info mt-4" style="width:100px">Pinjam</button>
-        </div>
-    </form>
   </div>
-  </div>
-   </section>
+</div>
  
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

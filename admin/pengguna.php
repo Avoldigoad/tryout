@@ -175,7 +175,7 @@ $result = mysqli_query($koneksi, $sql);
             <h1 class="m-0">Pengguna</h1>
           </div><!-- /.col -->
           <div style="margin-left: 90%; position: relative; top: 30px;">
-          <a href="register_pengguna.php" class="btn btn-primary">Registrasi</a>
+          <a href="register_pengguna.php" class="btn btn-primary">+Registrasi</a>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

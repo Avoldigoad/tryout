@@ -26,6 +26,7 @@ header('location: petugas/index.php');
 //echo"Masuk ke petugas";
 }
 elseif($data['role'] == 'peminjam'){
+$_SESSION['id'] = $data['id'];
 $_SESSION['role'] = $data['role'];
 header('location: peminjam/index.php');
 //echo"Masuk ke peminjam"; 
@@ -57,8 +58,8 @@ echo "akun tidak ada";
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
   <style>
   body {
-            background-image: url('background.jpg');
-            background-size: cover;
+            background-image: url(asset/perpus3.jpg);
+            background-color: #f8f9fa;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;

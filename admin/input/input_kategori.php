@@ -177,7 +177,7 @@ $result2 = mysqli_query($koneksi, $sql2);
         <div class="modal-dialog" role="document">
             <div class="modal-content">
               <?php if($result){
-                $riw = mysqli_fetch_assoc($result1);
+                $riw = mysqli_fetch_assoc($result);
               ?>
                 <div class="modal-header">
                     <h4 class="modal-title" id="editModalLabel">Tambah Kategori</h4>
@@ -251,7 +251,7 @@ $result2 = mysqli_query($koneksi, $sql2);
                     <td><?= $i ?></td>
                     <td><?= $row['nama_kategori'] ?></td>
                     <td>
-                        <a href="edit/edit_kategori.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                        <a href="edit/edit_kategori.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="hapus/hapus_kategori.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
                     </td>
                 </tr>

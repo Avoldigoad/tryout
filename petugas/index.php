@@ -146,7 +146,7 @@ $result4 = mysqli_query($koneksi, $sql4);
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-            </ol>
+
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -163,13 +163,11 @@ $result4 = mysqli_query($koneksi, $sql4);
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo mysqli_num_rows($result1);?></h3>
-
                 <p>Total Buku</p>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-book"></i>
               </div>
-              <a href="buku.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -178,13 +176,11 @@ $result4 = mysqli_query($koneksi, $sql4);
             <div class="small-box bg-success">
               <div class="inner">
                 <h3><?php echo mysqli_num_rows($result2);?><sup style="font-size: 20px"></sup></h3>
-
                 <p>Pengguna</p>
               </div>
               <div class="icon">
                 <i class="fa-solid fa-users"></i>
               </div>
-              <a href="pengguna.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -193,20 +189,18 @@ $result4 = mysqli_query($koneksi, $sql4);
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3><?php echo mysqli_num_rows($result4);?></h3>
-
                 <p>Peminjaman</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="peminjam.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
   </div>
   <section class="content d-flex flex-col">
       <div class="container-fluid">
-    <table class="table" style="margin-top:30px;width:97%; position:relative;left:50px;">
+    <table class="table" style="margin-top:30px;width:95%; position:relative;left:50px;">
         <thead>
             <tr>
                 <th>No</th>
@@ -228,10 +222,8 @@ $result4 = mysqli_query($koneksi, $sql4);
                     <td><?= $row['tanggal_peminjaman'] ?></td>
                     <td><?= $row['status_peminjaman']?></td>
                     <td>
-                        <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="hapus/hapus_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
-                        <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Download</a>
-                    </td>
+                    <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
+                  </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
@@ -240,6 +232,7 @@ $result4 = mysqli_query($koneksi, $sql4);
     </section>
   </div>
 </div>
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -247,7 +240,6 @@ $result4 = mysqli_query($koneksi, $sql4);
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="../dashboard/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
