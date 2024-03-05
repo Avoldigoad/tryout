@@ -8,7 +8,7 @@ if(!$_SESSION["id"]){
 
 $id = $_GET['id'];
 
-$query = "SELECT judul, penulis, penerbit, tahun_terbit, sinopsis, foto FROM buku WHERE id = '$id'";
+$query = "SELECT buku.*, kategori_buku.nama_kategori FROM buku INNER JOIN kategori_buku ON buku.kategori_id = kategori_buku.id WHERE buku.id = '$id'";
 $result = mysqli_query($koneksi, $query);
 $detail = mysqli_fetch_assoc($result);
 
@@ -233,8 +233,8 @@ $detail = mysqli_fetch_assoc($result);
                 <h3 for=""><?= $detail['judul'] ?></h4><br>
                 <h5 for="">Penulis :<?= $detail['penulis'] ?></h4><br>
                 <h5 for="">Penerbit : <?= $detail['penerbit'] ?></h5><br>
-                <h5 for="">Tahun Terbit : <?= $detail['tahun_terbit'] ?></h5>
-                <h5 for="">Kategori : <?= $detail['kategori_id'] ?></h5>
+                <h5 for="">Tahun Terbit : <?= $detail['tahun_terbit'] ?></h5><br>
+                <h5 for="">Kategori : <?= $detail['nama_kategori'] ?></h5>
             </div>
             </div>
                     <div class="form-group ml-2 mt-2">

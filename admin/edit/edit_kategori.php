@@ -213,14 +213,14 @@ $result2 = mysqli_query($koneksi, $sql2);
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content-wrapper" style="background-color: #EEEEEE; color:#161A30; margin-left: 6px; margin-top: -50px;">
+    <div class="content-wrapper" style="background-color: #fff; color:#161A30; margin-left: 6px; margin-top: -50px;">
     <!-- Content Header (Page header) -->
     <section class="content-header"><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
    <section class="content">
-    <div class="content-wrape shadow p-3 mb-5 bg-body-tertiary mt-5" style="width:100%;padding:10px;background:#fff;border-radius:7px;">
+    <div class="content-wrape mt-0" style="width:100%;padding:10px;background:#fff;border-radius:7px;">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">

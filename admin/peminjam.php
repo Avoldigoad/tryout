@@ -192,18 +192,7 @@ $result3 = mysqli_query($koneksi, $sql3);
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="height:91.6vh; background-color: #fff; color:#161A30;">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
+    <div class="content-header"></div>
     <!-- Main content -->
     <section class="content d-flex flex-col">
     <div class="container-fluid">
@@ -218,7 +207,7 @@ $result3 = mysqli_query($koneksi, $sql3);
           </div>
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>
-        <table class="table" style="margin-top:30px;width:97%; position:relative;left:50px;">
+        <table class="table" style="margin-top:30px;width:97%; position:relative;left:20px;">
             <thead>
                 <tr>
                     <th>No</th>
@@ -227,6 +216,7 @@ $result3 = mysqli_query($koneksi, $sql3);
                     <th>Buku</th>
                     <th>Tanggal peminjaman</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -248,7 +238,7 @@ $result3 = mysqli_query($koneksi, $sql3);
                                 <td><?= $tanggal_peminjaman ?></td>
                                 <td><?= $row['status_peminjaman']?></td>
                                 <td>
-                                    <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Download</a>
+                                    <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm" style="color: #fff;">Download</a>
                                 </td>
                             </tr>
                         <?php
@@ -264,7 +254,7 @@ $result3 = mysqli_query($koneksi, $sql3);
                             <td><?= $tanggal_peminjaman ?></td>
                             <td><?= $row['status_peminjaman']?></td>
                             <td>
-                                <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm">Download</a>
+                                <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm" style="color: #fff;">Download</a>
                             </td>
                         </tr>
                     <?php

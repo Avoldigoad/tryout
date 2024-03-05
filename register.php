@@ -19,8 +19,7 @@ $result = mysqli_query($koneksi, $sql);
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
   <style>
         body {
-            background-image: url(asset/perpus3.jpg);
-            background-color: #f8f9fa;
+            background-color: #176b87;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -32,7 +31,7 @@ $result = mysqli_query($koneksi, $sql);
 
         .card {
             width: 400px;
-            background: white;
+            background: #eee;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -72,7 +71,7 @@ $result = mysqli_query($koneksi, $sql);
         }
     </style>
 </head>
-<body class="hold-transition register-page">
+<body>
 <div class="register-box">
 
 <div class="card">

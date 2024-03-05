@@ -211,7 +211,7 @@ $result4 = mysqli_query($koneksi, $query);
                     <td><?= $row['total'] ?></td>
                     <td><?= number_format($row['average_rating'], 1) ?></td>
                     <td>
-                    <a href="detail/detail_ulasan.php?id=<?= $row['buku_id']; ?>" class="btn btn-warning">Detail</a>
+                    <a href="detail/detail_ulasan.php?id=<?= $row['buku_id']; ?>" class="btn btn-warning" style="color : #fff;">Detail</a>
                     </td>
     </tr>
 <?php endwhile; ?>

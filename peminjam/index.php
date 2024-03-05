@@ -81,28 +81,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">PERPUS SMEA</a>
+        <a class="navbar-brand" href="#" style="color: #fff;">PERPUS SMEA</a>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.php" style="color: #fff;">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="fav.php">Favorit</a>
+                    <a class="nav-link" href="fav.php" style="color: #fff;">Favorit</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="peminjaman.php">Peminjaman</a>
+                    <a class="nav-link" href="peminjaman.php" style="color: #fff;">Peminjaman</a>
                 </li>
             </ul>
             <!-- Search Form -->
             <form class="d-flex mx-auto">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                <input class="form-control me-2" type="search" placeholder="Cari Buku.." aria-label="Search" id="searchInput" style="width: 500px;">
             </form>
         </div>
         <div class="navbar-nav">
-            <a class="nav-link fa-solid fa-right-from-bracket" href="../logout.php"> </a>
+            <a class="nav-link fa-solid fa-right-from-bracket" href="../logout.php" style="color: #fff;"> </a>
         </div>
     </div>
 </nav>

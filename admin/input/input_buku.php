@@ -177,7 +177,7 @@ $result3 = mysqli_query($koneksi, $sql3);
     </div>
     <!-- /.sidebar -->
   </aside>
-  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
+  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false" style="margin: 0 auto;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
               <?php if($result){
@@ -270,7 +270,7 @@ $result3 = mysqli_query($koneksi, $sql3);
           <div class="col-sm-6">
             <h1 style="color:#161A30;">Buku</h1>
             <a href="input/input_buku.php">
-              <button type="button" class="btn btn-primary" style="margin-left:170%;margin-top:-30px;position:absolute;width:140px;">Tambah Buku</button>
+              <button type="button" class="btn btn-primary" style="margin-left:170%;margin-top:-30px;position:absolute;width:140px;">+Tambah Buku</button>
             </a>
           </div>            
         </div>
@@ -279,7 +279,7 @@ $result3 = mysqli_query($koneksi, $sql3);
     <!-- Main content -->
     <section class="content d-flex flex-col">
       <div class="container-fluid">
-    <table class="table" style="margin-top:30px;width:90%; position:relative;left:50px;">
+    <table class="table" style="margin-top:30px;width:100%; position:relative;left:10px;">
         <thead>
             <tr>
                 <th>No</th>
@@ -305,6 +305,7 @@ $result3 = mysqli_query($koneksi, $sql3);
                     <td>
                         <a href="edit/edit_buku.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="delete/delete_buku.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</a>
+                        <a href="detail/detail_buku.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm" style="color: #fff;">Detail</a>                   
                     </td>
                 </tr>
             <?php endwhile; ?>

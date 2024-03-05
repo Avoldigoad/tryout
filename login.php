@@ -58,8 +58,7 @@ echo "akun tidak ada";
   <link rel="stylesheet" href="dashboard/dist/css/adminlte.min.css">
   <style>
   body {
-            background-image: url(asset/perpus3.jpg);
-            background-color: #f8f9fa;
+            background-color: #176b87;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -71,7 +70,7 @@ echo "akun tidak ada";
 
         .card {
             width: 400px;
-            background: rgba(255, 255, 255, 0.8);
+            background: #eee;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -118,7 +117,7 @@ echo "akun tidak ada";
         }
     </style>
 </head>
-<body class="hold-transition login-page">
+<body>
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card">

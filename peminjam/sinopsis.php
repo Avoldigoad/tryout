@@ -8,7 +8,7 @@ if(!$_SESSION["id"]){
 
 $id = $_GET['id'];
 
-$query = "SELECT judul, penulis, penerbit, tahun_terbit, sinopsis, foto, kategori_id FROM buku WHERE id = '$id'";
+$query = "SELECT buku.*, kategori_buku.nama_kategori FROM buku INNER JOIN kategori_buku ON buku.kategori_id = kategori_buku.id WHERE buku.id = '$id'";
 $result = mysqli_query($koneksi, $query);
 $detail = mysqli_fetch_assoc($result);
 ?>
@@ -42,19 +42,19 @@ $detail = mysqli_fetch_assoc($result);
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">PERPUS SMEA</a>
+        <a class="navbar-brand" href="#" style="color: #fff;">PERPUS SMEA</a>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index.php" style="color: #fff;">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="fav.php">Favorit</a>
+                    <a class="nav-link" href="fav.php" style="color: #fff;">Favorit</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="peminjaman.php">Peminjaman</a>
+                    <a class="nav-link" href="peminjaman.php" style="color: #fff;">Peminjaman</a>
                 </li>
             </ul>
             <!-- Search Form -->
@@ -62,7 +62,7 @@ $detail = mysqli_fetch_assoc($result);
             </form>
         </div>
         <div class="navbar-nav">
-            <a class="nav-link fa-solid fa-right-from-bracket" href="../logout.php"> </a>
+            <a class="nav-link fa-solid fa-right-from-bracket" href="../logout.php" style="color: #fff;"> </a>
         </div>
     </div>
 </nav>
@@ -76,7 +76,7 @@ $detail = mysqli_fetch_assoc($result);
                 <h5 for="" style="margin-left: 7px;">Penulis :<?= $detail['penulis'] ?></h4><br>
                 <h5 for="" style="margin-left: 7px;">Penerbit : <?= $detail['penerbit'] ?></h5><br>
                 <h5 for="" style="margin-left: 7px;">Tahun Terbit : <?= $detail['tahun_terbit'] ?></h5><br>
-                <h5 for="" style="margin-left: 7px;">Kategori : <?= $detail['kategori_id'] ?></h5>
+                <h5 for="" style="margin-left: 7px;">Kategori : <?= $detail['nama_kategori'] ?></h5>
             </div>
             </div>
                     <div class="form-group ml-2 mt-2">
