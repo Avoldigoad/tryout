@@ -1,11 +1,13 @@
 # Perpustakaan Digital
 
-Perpustakaan digital ini adalah aplikasi sederhana yang memungkinkan pengguna untuk melakukan peminjaman dan pengembalian buku secara online. Aplikasi ini dibangun menggunakan PHP dan MySQL.
+Perpustakaan digital ini adalah aplikasi sederhana yang memungkinkan pengguna untuk melakukan peminjaman dan pengembalian buku secara online, bukunya pun digital. Aplikasi ini dibangun menggunakan PHP dan MySQL.
 
 ## Fitur
 
 - Peminjaman buku
 - Pengembalian buku
+- Favorit Buku
+- Ulasan Buku
 - Manajemen data buku, pengguna, dan peminjaman
 - Hak akses berbeda untuk admin,petugas dan peminjam
 
@@ -20,6 +22,15 @@ Perpustakaan digital ini adalah aplikasi sederhana yang memungkinkan pengguna un
 
 1. Login sebagai admin (username: idon, password: 123) atau petugas atau sebagai peminjam.
 2. Telusuri katalog buku dan temukan buku yang ingin Anda pinjam.
-3. Lakukan peminjaman buku dengan mengisi formulir peminjaman.
-4. Pengembalian buku dilakukan melalui admin,petugas.
+3. Lakukan peminjaman buku.
+4. Pengembalian buku bisa dilakukan melalui admin,petugas maupun peminjam itu sendiri.
+
+## Kelebihan
+1.Filter pertanggal untuk mencari peminjam
+2.Search Buku melalui judul
+
+## Kekurangan
+1.Tidak ada reset password
+2.Pengembalian buku secara manual tidak otomatis ketika masa pinjam buku sudah habis
+3.Tampilan kurang menarik
 
