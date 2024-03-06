@@ -8,6 +8,7 @@ Perpustakaan digital ini adalah aplikasi sederhana yang memungkinkan pengguna un
 - Pengembalian buku
 - Favorit Buku
 - Ulasan Buku
+- Baca Buku
 - Manajemen data buku, pengguna, dan peminjaman
 - Hak akses berbeda untuk admin,petugas dan peminjam
 
