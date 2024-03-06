@@ -26,11 +26,11 @@ Perpustakaan digital ini adalah aplikasi sederhana yang memungkinkan pengguna un
 4. Pengembalian buku bisa dilakukan melalui admin,petugas maupun peminjam itu sendiri.
 
 ## Kelebihan
-1.Filter pertanggal untuk mencari peminjam
-2.Search Buku melalui judul
+- Filter pertanggal untuk mencari peminjam
+- Search Buku melalui judul
 
 ## Kekurangan
-1.Tidak ada reset password
-2.Pengembalian buku secara manual tidak otomatis ketika masa pinjam buku sudah habis
-3.Tampilan kurang menarik
+- Tidak ada reset password
+- Pengembalian buku secara manual tidak otomatis ketika masa pinjam buku sudah habis
+- Tampilan kurang menarik
 
