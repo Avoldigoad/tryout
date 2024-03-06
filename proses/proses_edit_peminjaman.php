@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($koneksi, $updateSql)) {
         echo "updated successfully!";
-        header("Location: ../admin/index.php");
+        header("Location: ../admin/peminjam.php");
         exit();
     } else {
         echo "Error updating: " . mysqli_error($koneksi);

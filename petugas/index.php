@@ -207,7 +207,7 @@ $result4 = mysqli_query($koneksi, $sql4);
                 <th>Perpustakaan</th>
                 <th>Nama</th>
                 <th>Buku</th>
-                <th>Tanggal_peminjaman</th>
+                <th>Tanggal peminjaman</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>

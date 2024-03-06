@@ -238,6 +238,7 @@ $result3 = mysqli_query($koneksi, $sql3);
                                 <td><?= $tanggal_peminjaman ?></td>
                                 <td><?= $row['status_peminjaman']?></td>
                                 <td>
+                                    <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>"class="btn btn-primary btn-sm">Edit</a>
                                     <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm" style="color: #fff;">Download</a>
                                 </td>
                             </tr>
@@ -254,6 +255,7 @@ $result3 = mysqli_query($koneksi, $sql3);
                             <td><?= $tanggal_peminjaman ?></td>
                             <td><?= $row['status_peminjaman']?></td>
                             <td>
+                                <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>"class="btn btn-primary btn-sm">Edit</a>
                                 <a href="../proses/download.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm" style="color: #fff;">Download</a>
                             </td>
                         </tr>

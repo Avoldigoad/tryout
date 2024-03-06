@@ -217,7 +217,7 @@ $result2 = mysqli_query($koneksi, $sql2);
           </select>
             </div>
                 <div class="footer text-center">
-                <a href="../index.php"><button type="button" class="btn btn-secondary">Close</button></a>
+                <a href="../peminjam.php"><button type="button" class="btn btn-secondary">Close</button></a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
          </form>

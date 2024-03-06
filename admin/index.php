@@ -7,13 +7,6 @@ $result1 = mysqli_query($koneksi, $sql1);
 $sql2 = "SELECT * FROM user";
 $result2 = mysqli_query($koneksi, $sql2);
 
-$sql3 = "SELECT peminjaman.*, user.nama_lengkap,buku.judul, perpustakaan.nama_perpus 
-         FROM peminjaman
-        INNER JOIN user ON peminjaman.user =user.id
-        INNER JOIN buku ON peminjaman.buku =buku.id
-        INNER JOIN perpustakaan ON peminjaman.perpus_id =perpustakaan.id";
-$result3 = mysqli_query($koneksi, $sql3);
-
 $sql4 = "SELECT * FROM peminjaman";
 $result4 = mysqli_query($koneksi, $sql4);
 ?>
@@ -254,40 +247,6 @@ $result4 = mysqli_query($koneksi, $sql4);
                         </div>
                     </div>
                 </div>
-                <section class="content">
-                    <div class="container-fluid">
-                        <table class="table" style="margin-top:30px;width:95%; position:relative;left:50px;">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Perpustakaan</th>
-                                    <th>Nama</th>
-                                    <th>Buku</th>
-                                    <th>Tanggal_peminjaman</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 0;
-                                while ($row = mysqli_fetch_assoc($result3)) :  $i++; ?>
-                                    <tr>
-                                        <td><?= $i ?></td>
-                                        <td><?= $row['nama_perpus'] ?></td>
-                                        <td><?= $row['nama_lengkap'] ?></td>
-                                        <td><?= $row['judul'] ?></td>
-                                        <td><?= $row['tanggal_peminjaman'] ?></td>
-                                        <td><?= $row['status_peminjaman'] ?></td>
-                                        <td>
-                                            <a href="edit/edit_peminjaman.php?id=<?= $row['id'] ?>"
-                                                class="btn btn-primary btn-sm">Edit</a>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
             </section>
             <!-- /.content -->
         </div>
