@@ -26,10 +26,6 @@ $review = mysqli_query($koneksi, $view);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
         /* CSS untuk mengatur teks di tengah */
-        .isi:hover{
-            background-color: #525CEB;
-            color:#FFf;
-        }
         .brand-link {
             text-align: center;
             display: flex;

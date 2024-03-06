@@ -80,7 +80,7 @@ $result2 = mysqli_query($koneksi, $sql2);
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        <a class="nav-link" href="../logout.php" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a class="nav-link" href="../logout.php" role="button" style="margin-left: 220px;"><i class="fa-solid fa-right-from-bracket"></i></a>
       </li>
     </ul>
   </nav>

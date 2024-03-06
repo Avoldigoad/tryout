@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <div class="table-container d-flex">
                 <div class="container-content d-flex flex-wrap">
                     <?php while($rew=mysqli_fetch_assoc($result2)):?>
-                    <div class="card searchable" style="width: 250px; margin-left: 28px; margin-top: 20px;">
+                    <div class="card searchable" style="width: 270px; margin-left: 50px; margin-top: 20px;">
                         <img src="../asset/<?= $rew['foto'];?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <b><h6><?= $rew['judul']; ?></h6></b>
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <i class="fa-regular fa-heart d-flex" style="align-items:center;"></i></a>
                             <?php endif; ?>   
                             <a href="sinopsis.php?id=<?=$rew['buku_id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff; height:32px;">Detail</a>
-                            <a href="ulasan.php?id=<?=$rew['buku_id'] ?>" class="btn btn-sm" style="background-color:green; color:#fff; height:32px; margin-top: 5px;">Ulasan</a>                                        
+                            <a href="ulasan.php?id=<?=$rew['buku_id'] ?>" class="btn btn-sm" style="background-color:green; color:#fff; height:32px;">Ulasan</a>                                        
                         </div>
                     </div>
                     <?php endwhile;?>
