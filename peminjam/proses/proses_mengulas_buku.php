@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql = "INSERT INTO ulasan_buku (user, buku, ulasan, rating) VALUES ('$user', '$buku', '$ulasan', '$rating')";
 
     if (mysqli_query($koneksi, $sql)) {
-        header("location:../index.php");
+        header("location:../peminjaman.php");
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
     }

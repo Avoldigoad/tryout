@@ -6,7 +6,7 @@ if(!$_SESSION["id"]){
   header("Location:../login.php");
 }
 
-$sql = "SELECT * FROM buku";
+$sql = "SELECT * FROM buku WHERE hapus=0";
 $result = mysqli_query($koneksi, $sql);
 
 $sql1 = "SELECT * FROM kategori_buku";

@@ -23,13 +23,11 @@ elseif($data['role'] == 'petugas'){
 $_SESSION['id'] = $data['id'];
 $_SESSION['role'] = $data['role'];
 header('location: petugas/index.php');
-//echo"Masuk ke petugas";
 }
 elseif($data['role'] == 'peminjam'){
 $_SESSION['id'] = $data['id'];
 $_SESSION['role'] = $data['role'];
 header('location: peminjam/index.php');
-//echo"Masuk ke peminjam"; 
 }
 //header('location: admin/index.php');
 } else {

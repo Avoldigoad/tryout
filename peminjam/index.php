@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 $result = mysqli_query($koneksi,$sql);
                                 if(mysqli_num_rows($result) > 0){
                             ?>
-                            <a href="proses/proses_pengembalian_peminjaman.php?id=<?= $rew['buku_id'] ?>" class="btn btn-sm btn-dark">
+                            <a href="proses/proses_pengembalian_peminjaman.php?id=<?= $rew['buku_id'] ?>" class="btn btn-sm btn-secondary">
                                 Pinjam
                             </a>
                             <?php }else{ ?>
@@ -139,10 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         $checkResult = mysqli_query($koneksi, $checkQuery);
 
                         if (mysqli_num_rows($checkResult) > 0) :?>
-                            <a  style="height:32px;" href="index.php?id=<?=$rew['buku_id'];?>&action=delete" class="btn btn-danger" onclick="return confirmDelete()">
+                            <a  style="height:32px;" href="index.php?id=<?=$rew['buku_id'];?>&action=delete" class="btn" onclick="return confirmDelete()">
                             <i class="fa-solid fa-heart d-flex" style="align-items:center;"></i></a>
                         <?php else :?>
-                            <a  style="height:32px;" href="index.php?id=<?=$rew['buku_id'];?>&action=add" class="btn btn-danger">
+                            <a  style="height:32px;" href="index.php?id=<?=$rew['buku_id'];?>&action=add" class="btn">
                             <i class="fa-regular fa-heart d-flex" style="align-items:center;"></i></a>
                             <?php endif; ?>   
                             <a href="sinopsis.php?id=<?=$rew['buku_id'] ?>" class="btn btn-sm" style="background-color:#FE7A36; color:#fff; height:32px;">Detail</a>

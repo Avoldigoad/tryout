@@ -228,10 +228,7 @@ $result3 = mysqli_query($koneksi, $sql3);
             <label for="penerbit">Penerbit :</label>
             <input type="text" name="penerbit" class="form-control" required>
         </div>
-        <div class="form-grup">
-            <label for="sinopsis">Sinopsis :</label>
-            <textarea type="text" name="sinopsis" class="form-control" required></textarea>
-        </div>
+       
         <div class="form-grup">
             <label for="tahun_terbit">Tahun terbit :</label>
             <input type="date" name="tahun_terbit" class="form-control" required>
@@ -250,6 +247,10 @@ $result3 = mysqli_query($koneksi, $sql3);
             <option value="<?= $rew['id'] ?>"><?= $rew['nama_kategori'];?></option>
           <?php endwhile ?>
         </select>
+        <div class="form-grup">
+            <label for="sinopsis">Sinopsis :</label>
+            <textarea type="text" name="sinopsis" class="form-control" required></textarea>
+        </div>
         </div>
                       <div class="modal-footer">
                         <a href="../buku.php"><button type="submit"  class="btn btn-primary">Simpan Buku</button></a>

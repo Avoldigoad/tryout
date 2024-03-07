@@ -6,7 +6,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
     $id = $_GET['id'];
 
-    $query = "DELETE FROM buku WHERE id = $id";
+    $query = "UPDATE buku SET hapus = 1 WHERE id = $id";
     if ($koneksi->query($query) === TRUE) {
         echo "Data berhasil dihapus.";
     } else {
